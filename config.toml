@@ -1,0 +1,121 @@
+baseURL = "https://MarcDcls.github.io/"
+disableLanguages = []
+disqusShortname = ""
+paginate = "4"
+summaryLength = "30"
+theme = "airspace-hugo"
+title = "Marc's projects"
+[Languages.en]
+contentDir = "content/english"
+copyright = "Copyright &copy; 2020 [Themefisher](https://themefisher.com) All Rights Reserved"
+languageCode = "en-Us"
+languageName = "Fr"
+weight = 1
+
+# Sections en haut de page
+[[Languages.en.menu.main]]
+URL = "/"
+name = "Home"
+weight = 1
+[[Languages.en.menu.main]]
+URL = "projects"
+name = "Projects"
+weight = 2
+[[Languages.en.menu.main]]
+URL = "maker"
+name = "Maker"
+weight = 3
+[[Languages.en.menu.main]]
+URL = "about"
+name = "About me"
+weight = 4
+
+# Sections en fin de page
+[[Languages.en.menu.footer]]
+URL = "about"
+name = "About me"
+weight = 1
+[[Languages.en.menu.footer]]
+URL = "projects"
+name = "Projects"
+weight = 2
+[[Languages.en.menu.footer]]
+URL = "maker"
+name = "Maker"
+weight = 3
+[[Languages.en.menu.footer]]
+URL = "about"
+name = "About me"
+weight = 4
+
+
+
+
+
+
+[markup.goldmark.renderer]
+unsafe = true
+[outputs]
+home = ["HTML"]
+[params]
+author = "Marc Duclusaud"
+description = ""
+email = "marc_dcls@outlook.fr"
+google_analitycs_id = ""
+location = ""
+logo = "images/misc/M_logo.webp"
+logo_width = "40px"
+mobile = "+33 6 77 47 13 45"
+multi_author = false
+phone = "+33 6 77 47 13 45"
+[params.cookies]
+enable = false
+expire_days = 2
+
+# [params.gmap]
+# enable = true
+# gmap_api = "https://maps.googleapis.com/maps/api/js?key=AIzaSyCcABaamniA6OL5YvYSpB3pFMNrXwXnLwU&libraries=places"
+# map_latitude = "44.806710"
+# map_longitude = "-0.605199"
+# map_marker = "images/marker.png"
+
+[[params.plugins.css]]
+link = "plugins/bootstrap/bootstrap.min.css"
+[[params.plugins.css]]
+link = "plugins/Ionicons/css/ionicons.min.css"
+[[params.plugins.css]]
+link = "plugins/magnific-popup/magnific-popup.css"
+[[params.plugins.css]]
+link = "plugins/slick/slick.css"
+[[params.plugins.js]]
+link = "plugins/jQuery/jquery.min.js"
+[[params.plugins.js]]
+link = "plugins/bootstrap/bootstrap.min.js"
+[[params.plugins.js]]
+link = "plugins/slick/slick.min.js"
+[[params.plugins.js]]
+link = "plugins/magnific-popup/jquery.magnific-popup.min.js"
+[[params.plugins.js]]
+link = "plugins/shuffle/shuffle.min.js"
+[[params.plugins.js]]
+link = "plugins/google-map/gmap.js"
+[params.preloader]
+enable = true
+preloader = ""
+
+# Réseaux sociaux
+[[params.social]]
+icon = "ion-social-github"
+link = "https://github.com/MarcDcls"
+[[params.social]]
+icon = "ion-social-linkedin"
+link = "https://www.linkedin.com/in/marc-duclusaud-260b46223/"
+# [[params.social]]
+# icon = "ion-social-twitter"
+# link = "https://twitter.com/"
+# [[params.social]]
+# icon = "ion-social-facebook"
+# link = "https://www.facebook.com/"
+# [[params.social]]
+# icon = "ion-social-youtube"
+# link = "https://www.youtube.com/user/"

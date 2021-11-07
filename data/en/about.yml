@@ -1,0 +1,50 @@
+
+############################# About #################################
+about:
+  enable : true
+  title : "Marc Duclusaud"
+  image : "images/misc/photo_marc_circle.webp"
+  
+  content : "Currently student in robotics at ENSEIRB-MATMECA engineering school, \\
+
+  I use this website to share my work on several technological projects"
+
+  button:
+    enable : true
+    label : "Resume"
+    link : "/pdf/CV_Marc_Duclusaud.pdf"
+
+################################ Bandeau noir #####################################
+# features:
+#   enable : true
+#   title : "Nos partenariats"
+#   feature_item:
+#     # feature item loop
+#     - icon : "ion-social-euro" #ionicon pack v2 : https://ionicons.com/v2/
+#       name : "Dons financiers"
+#       content : "Texte"
+      
+#     # feature item loop
+#     - icon : "ion-wrench" #ionicon pack v2 : https://ionicons.com/v2/
+#       name : "Dons matériel"
+#       content : "Texte"
+      
+#     # feature item loop
+#     - icon : "ion-information" #ionicon pack v2 : https://ionicons.com/v2/
+#       name : "Formations"
+#       content : "Texte"
+      
+#     # feature item loop
+#     - icon : "ion-happy" #ionicon pack v2 : https://ionicons.com/v2/
+#       name : "Organisation d'évènements"
+#       content : "Texte"
+      
+#     # feature item loop
+#     - icon : "ion-speakerphone" #ionicon pack v2 : https://ionicons.com/v2/
+#       name : "Communication"
+#       content : "Texte"
+      
+#     # feature item loop
+#     - icon : "ion-university" #ionicon pack v2 : https://ionicons.com/v2/
+#       name : "Recrutement"
+#       content : "Texte"

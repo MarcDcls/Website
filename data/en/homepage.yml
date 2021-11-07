@@ -1,0 +1,13 @@
+############################### Banner ##############################
+banner:
+  enable : true
+  bg_image : "images/banners/common_banner.webp"
+  bg_overlay : true
+  title : "Project's name"
+  content : "Project's description"
+
+############################# About #################################
+about:
+  enable : true
+  # title : "Présentation du site"
+  content : "Présentation du site"
