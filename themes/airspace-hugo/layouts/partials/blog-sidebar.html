@@ -1,0 +1,7 @@
+{{- $sidebarWidgets := site.Params.widgets.sidebar -}}
+<aside class="sidebar">
+  {{- partial "widgets/widget_area" ( dict "Widgets" $sidebarWidgets "Scope" . ) -}}
+</aside>
+<a href="https://twitter.com/AssoEirbot?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-lang="fr" data-show-count="false">Follow @AssoEirbot</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<a class="twitter-timeline" data-lang="fr" data-height="2000" data-theme="light" href="https://twitter.com/AssoEirbot?ref_src=twsrc%5Etfw">Tweets by AssoEirbot</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
