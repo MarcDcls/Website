@@ -1,6 +1,6 @@
 +++
 bg_image = "images/banners/banner_megabot.webp"
-image = "images/projects/megabot/MegabotNoBackground.png"
+image = "images/projects/megabot/megabot_onshape.webp"
 title = "Megabot"
 date = "2021-10-17"
 description = "Contrôle, planification et simulation d'un robot quadrupède à vérins électriques de grande envergure"
@@ -63,14 +63,15 @@ Une solution classique à ce problème est d'avoir recours à la matrice jacobie
     \end{array}
 \end{equation*}
 </div>
+
 &nbsp;
 
 Ce problème, où \\(\Delta V\\) est le vecteur des variations des élongations des vérins à déterminer, \\(J\\) la jacobienne de la cinématique directe et \\(\Delta X\\) le vecteur des variations de position, minimise effectivement l'erreur quadratique sur \\(\Delta X\\) tout en permettant de contraindre \\(\Delta V\\) avec les variables \\(G\\), \\(h\\), \\(A\\), \\(b\\), \\(lb\\) et \\(ub\\). Ces variables de contraintes sont utiles pour contraindre les élongations de vérins à ses limites physiques par exemple.
 
 <!-- Démo -->
 
-<details class="details-demo">
-<summary class="summary-demo">
+<details class="mydetails">
+<summary>
 
 <center>
 
@@ -93,7 +94,6 @@ On cherche à minimiser l'erreur quadratique de position. Pour cela, on considè
     \end{array}
 \end{equation*}
 </div>
-&nbsp;
 
 L'erreur quadratique de position vaut alors :
 
@@ -108,7 +108,6 @@ L'erreur quadratique de position vaut alors :
     \end{array}
 \end{equation*}
 </div>
-&nbsp;
 
 Minimiser l'erreur quadratique revient alors effectivement à minimiser 
 
@@ -128,58 +127,95 @@ Minimiser l'erreur quadratique revient alors effectivement à minimiser
 
 Nous allons a présent élaborer la matrice jacobienne associée à la cinématique directe du Megabot. Nous l'élaborerons tout d'abord relativement à une patte dans son plan avant de la généraliser à l'ensemble des pattes dans le référentiel monde.
 
-#### Cinématique directe dans le plan de la patte
+\subsection{Cinématique directe dans le plan de la patte}
+\label{CinPlan}
 
-Il est nécessaire de formaliser notre modèle cinématique direct. Pour cela, nous allons calculer successivement les écarts de position des points \\(D\\), \\(E\\), \\(F\\), \\(G\\), \\(H\\), \\(I\\) et \\(J\\) représentés sur le schéma suivant en fonction des variations d'élongation \\(\Delta v_1\\) et \\(\Delta v_2\\) des vérins. Pour 2 points \\(A\\) et \\(B\\) d'éloignement constant, nous noterons la distance les séparant \\(d_{AB}\\).
+Il est nécessaire de formaliser notre modèle cinématique direct. Pour cela, nous allons calculer successivement les écarts de position des points $D$, $E$, $F$, $G$, $H$, $I$ et $J$ représentés sur la \figureautorefname{ \ref{fig:SchemaLeg}} en fonction des variations d'élongation $\Delta v_1$ et $\Delta v_2$ des vérins. 
 
-<center>
-<img src="/images/projects/megabot/schema_leg.webp" alt="Image not found !" width="80%"/>
-</center>
+Pour 2 points $A$ et $B$ d'éloignement constant, nous noterons la distance les séparant $d_{AB}$. Le graphe des dépendances des articulations de la patte est représenté à la \figureautorefname{ \ref{fig:Dependances}}.
 
-Le graphe des dépendances des articulations de la patte est le suivant :
-
-<center>
-<img src="/images/projects/megabot/dependances.webp" alt="Image not found !" width="60%"/>
-</center>
-&nbsp;
-
-<p class="p-boxed"></p>
-
-Nous cherchons tout d'abord à déterminer l'écart en \\(D\\). Pour cela, nous nous plaçons dans le triangle \\(ADC\\) où l'élongation \\(v_1\\) du segment \\(CD\\) et la position du point \\(D\\) sont variables. Nous obtenons le système \\(S_{1}\\) suivant :
+\begin{figure}[H]
+  \centering
+  \includegraphics[width = \textwidth]{img/SchemaLeg2.png}
+  \caption{Schéma d'une patte du MegaBot}
+  \label{fig:SchemaLeg}
+\end{figure}
+~\vspace{0.3cm}
 
 <div>
+
+\begin{figure}[H]
+    \centering
+\begin{tikzpicture}
+[roundnode/.style={circle, draw=red!60, fill=red!5, very thick, minimum size=6mm},
+squarenode/.style={circle, draw=black!60, fill=black!5, very thick, minimum size=6mm}]
+
+%Nodes
+\node[roundnode]    (v1)
+{$V_1$};
+\node[squarenode]   (D)
+[right=of v1] {D};
+\node[squarenode]   (E)
+[right=of D] {E};
+\node[squarenode]   (F)
+[right=of E] {F};
+\node[squarenode]   (G)
+[right=of F] {G};
+\node[squarenode]   (H)
+[below=of G] {H};
+\node[squarenode]   (I)
+[right=of H] {I};
+\node[squarenode]   (J)
+[right=of I] {J};
+\node[roundnode]   (v2)
+[below=of H] {$V_2$};
+
+%Lines
+\draw[->] (v1.east) -- (D.west);
+\draw[->] (D.east) -- (E.west);
+\draw[->] (E.east) -- (F.west);
+\draw[->] (F.east) -- (G.west);
+\draw[->] (G.east) -- (I.north);
+\draw[->] (F.south) -- (H.west);
+\draw[->] (H.east) -- (I.west);
+\draw[->] (v2.east) -- (I.south);
+\draw[->] (I.east) -- (J.west);
+\end{tikzpicture}
+\vspace{0.5cm}
+\caption{Schéma des dépendances articulaires}
+\label{fig:Dependances}
+\end{figure}
+</div>
+
+\newpage
+
+Nous cherchons tout d'abord à déterminer l'écart en $D$. Pour cela, nous nous plaçons dans le triangle $ADC$ où l'élongation $v_1$ du segment $CD$ et la position du point $D$ sont variables. Nous obtenons le système $S_{1}$ suivant :
+
 \begin{equation*}
 S_{1} 
 \left \{
 \begin{array}{l}
-    \left\langle \overrightarrow{AD} \middle| \overrightarrow{AD} \right\rangle - d_{AD}^{\hspace{0.1cm}2} = (x_{D} - x_{A})^{2} + (y_{D} - y_{A})^{2} - d_{AD}^{\hspace{0.1cm}2} = 0 \\
+    \scal{AD}{AD} - \norm{AD}^{\hspace{0.1cm}2} = (x_{D} - x_{A})^{2} + (y_{D} - y_{A})^{2} - \norm{AD}^{\hspace{0.1cm}2} = 0 \\
     ~\\
-    \left\langle \overrightarrow{CD} \middle| \overrightarrow{CD} \right\rangle - v_{1}^{\hspace{0.1cm} 2} = (x_{D} - x_{C})^{2} + (y_{D} - y_{C})^{2} - v_{1}^{\hspace{0.1cm} 2} = 0 \\
+    \scal{CD}{CD} - v_{1}^{\hspace{0.1cm} 2} = (x_{D} - x_{C})^{2} + (y_{D} - y_{C})^{2} - v_{1}^{\hspace{0.1cm} 2} = 0 \\
 \end{array}
 \right.
-\end{equation*}
-</div>
-&nbsp;
+\end{equation*}\\
 
-Après dérivation par rapport à \\(x_{D}\\), \\(y_{D}\\) et \\(v_1\\) et à condition que \\(A\\), \\(D\\) et \\(C\\) ne soient pas alignés (ce qui est toujours vérifié en raison de la structure de la patte), le système \\(S_{1}\\) nous donne la relation matricielle suivante  :
-
-<div>
+Après dérivation par rapport à $x_{D}$, $y_{D}$ et $v_1$ et à condition que $A$, $D$ et $C$ ne soient pas alignés\footnote[1]{Cela est toujours vérifié en raison de la structure de la patte (cf. \figureautorefname{ \ref{fig:SchemaLeg})}}, le système $S_{1}$ nous donne la relation matricielle suivante  :
 \begin{equation*}
     \nabla S_{1_{D, v_1}} \cdot \begin{bmatrix}
     \Delta x_{D}\\
     \Delta y_{D}\\ 
-    \Delta v_1\\ \end{bmatrix} = \begin{bmatrix}
+    \Delta v_1\\ \end{bmatrix} = \begin{bNiceArray}{cc|c}
     2(x_{D} - x_{A}) & 2(y_{D} - y_{A}) & 0 \\
     2(x_{D} - x_{C}) & 2(y_{D} - y_{C}) & -2v_{1}
-    \end{bmatrix} \cdot \begin{bmatrix}\Delta x_{D}\\
+    \end{bNiceArray} \cdot \begin{bmatrix}\Delta x_{D}\\
     \Delta y_{D}\\ 
     \Delta v_1\\ \end{bmatrix} = 
     \begin{bmatrix}0\\0\end{bmatrix}
 \end{equation*}
-</div>
-&nbsp;
 
-<div>
 \begin{equation*}
     \Longrightarrow \hspace{0.5cm}
     \Delta D = \begin{bmatrix}\Delta x_{D}\\
@@ -191,16 +227,15 @@ Après dérivation par rapport à \\(x_{D}\\), \\(y_{D}\\) et \\(v_1\\) et à co
     2v_{1}
     \end{bmatrix} \cdot \Delta v_{1}
 \end{equation*}
-</div>
-&nbsp;
 
-<div>
 \begin{equation*}
     \boxed{
     \Delta D = M_D \cdot \Delta v_{1}
+    }
     \hspace{0.2cm}
     \text{avec}
     \hspace{0.2cm}
+    \boxed{
     M_D = \begin{bmatrix} 
     2(x_{D} - x_{A}) & 2(y_{D} - y_{A}) \\
     2(x_{D} - x_{C}) & 2(y_{D} - y_{C}) \end{bmatrix}^{-1} \cdot 
@@ -209,81 +244,57 @@ Après dérivation par rapport à \\(x_{D}\\), \\(y_{D}\\) et \\(v_1\\) et à co
     2v_{1}
     \end{bmatrix}
     }
-\end{equation*}
-</div>
-&nbsp;
+\end{equation*}~\\
 
-<p class="p-boxed"></p>
+Du fait que les points $A$, $D$ et $E$ sont alignés, il est possible de déterminer l'écart de position en E à partir de l'écart de position en D en lui appliquant un simple facteur de proportionnalité.
 
-Du fait que les points \\(A\\), \\(D\\) et \\(E\\) sont alignés, il est possible de déterminer l'écart de position en \\(E\\) à partir de l'écart de position en \\(D\\) en lui appliquant un simple facteur de proportionnalité.
-
-<div>
 \begin{equation*}
-    \boxed{\Delta E = M_E \cdot \Delta v_1    
+    \boxed{\Delta E = M_E \cdot \Delta v_1}    
     \hspace{0.2cm}
     \text{avec}
     \hspace{0.2cm}
-    M_E = \dfrac{d_{AE}}{d_{AD}} \cdot M_D
+    \boxed{
+    M_E = \dfrac{\norm{AE}}{\norm{AD}} \cdot M_D
     }
-\end{equation*}
-</div>
-&nbsp;
+\end{equation*}\\
 
-<p class="p-boxed"></p>
+\newpage
 
-Nous  calculons maintenant l'écart en 
-\\(F\\) en nous plaçant dans le triangle \\(EBF\\) où les positions de \\(E\\) et \\(F\\) sont variables. Nous obtenons le système \\(S_2\\) suivant :
+Nous  calculons maintenant l'écart en F en nous plaçant dans le triangle $EBF$ où les positions de $E$ et $F$ sont variables. Nous obtenons le système $S_2$ suivant :
 
-<div>
 \begin{equation*}
 S_{2} 
 \left \{
 \begin{array}{l}
-    \left\langle \overrightarrow{EF} \middle| \overrightarrow{EF} \right\rangle - d_{EF}^{\hspace{0.1cm}2} = (x_{F} - x_{E})^{2} + (y_{F} - y_{E})^{2} - d_{EF}^{\hspace{0.1cm}2} = 0 \\
+    \scal{EF}{EF} - \norm{EF}^{\hspace{0.1cm}2} = (x_{F} - x_{E})^{2} + (y_{F} - y_{E})^{2} - \norm{EF}^{\hspace{0.1cm}2} = 0 \\
     ~\\
-    \left\langle \overrightarrow{BF} \middle| \overrightarrow{BF} \right\rangle - d_{BF}^{\hspace{0.1cm}2} = (x_{F} - x_{B})^{2} + (y_{F} - y_{B})^{2} - d_{BF}^{\hspace{0.1cm}2} = 0 \\
+    \scal{BF}{BF} - \norm{BF}^{\hspace{0.1cm}2} = (x_{F} - x_{B})^{2} + (y_{F} - y_{B})^{2} - \norm{BF}^{\hspace{0.1cm}2} = 0 \\
 \end{array}
 \right.
-\end{equation*}
-</div>
-&nbsp;
+\end{equation*}~\\
 
-Nous le dérivons par rapport à \\(x_{F}\\), \\(y_{F}\\), \\(x_{E}\\) et \\(y_{E}\\), et à condition que \\(B\\), \\(E\\) et \\(F\\) ne soient pas alignés (ce qui est toujours vérifié en raison de la structure de la patte), nous obtenons :
+Nous le dérivons par rapport à $x_{F}$, $y_{F}$, $x_{E}$ et $y_{E}$, et à condition que $B$, $E$ et $F$ ne soient pas alignés\footnote[1]{Cela est toujours vérifié en raison de la structure de la patte (cf. \figureautorefname{ \ref{fig:SchemaLeg})}}, nous obtenons :
 
-<div>
 \begin{equation*}
-    \nabla S_{2_{F, E}} 
-    \cdot 
-    \begin{bmatrix}
-    \Delta x_{F} \\
-    \Delta y_{F} \\
-    \Delta x_{E} \\
-    \Delta y_{E}
-    \end{bmatrix} 
-    = 
-    \begin{bmatrix}
+    \nabla S_{2_{F, E}} \cdot \begin{bmatrix}
+    \Delta x_{F}\\
+    \Delta y_{F}\\
+    \Delta x_{E}\\
+    \Delta y_{E}\\ 
+    \end{bmatrix} = \begin{bNiceArray}{cc|cc}
     2(x_{F} - x_{E}) & 2(y_{F} - y_{E}) & -2(x_{F} - x_{E}) & -2(y_{F} - y_{E}) \\
-    2(x_{F} - x_{B}) & 2(y_{F} - y_{B}) & 0 & 0
-    \end{bmatrix} 
-    \cdot 
-    \begin{bmatrix}
-    \Delta x_{F} \\
-    \Delta y_{F} \\
-    \Delta x_{E} \\
-    \Delta y_{E}
-    \end{bmatrix} 
-    = 
-    \begin{bmatrix}
+    2(x_{F} - x_{B}) & 2(y_{F} - y_{B}) & 0 & 0 \\
+    \end{bNiceArray} \cdot \begin{bmatrix}
+    \Delta x_{F}\\
+    \Delta y_{F}\\
+    \Delta x_{E}\\
+    \Delta y_{E}\\ \end{bmatrix} = \begin{bmatrix}
     0\\
     0\\
     0\\
-    0\\ 
-    \end{bmatrix}
+    0\\ \end{bmatrix}
 \end{equation*}
-</div>
-&nbsp;
 
-<div>
 \begin{equation*}
     \Longrightarrow \hspace{0.5cm}
     \Delta F = \begin{bmatrix}
@@ -297,16 +308,13 @@ Nous le dérivons par rapport à \\(x_{F}\\), \\(y_{F}\\), \\(x_{E}\\) et \\(y_{
     0 & 0
     \end{bmatrix} \cdot \Delta E
 \end{equation*}
-</div>
-&nbsp;
 
-<div>
 \begin{equation*}
-    \boxed{\Delta F = M_F \cdot \Delta v_1
+    \boxed{\Delta F = M_F \cdot \Delta v_1}
     \hspace{0.2cm}
     \text{avec} 
     \hspace{0.2cm}
-    M_F = \begin{bmatrix} 
+    \boxed{M_F = \begin{bmatrix} 
     2(x_{F} - x_{E}) & 2(y_{F} - y_{E}) \\
     2(x_{F} - x_{B}) & 2(y_{F} - y_{B}) \\
     \end{bmatrix}^{-1} \cdot 
@@ -314,80 +322,61 @@ Nous le dérivons par rapport à \\(x_{F}\\), \\(y_{F}\\), \\(x_{E}\\) et \\(y_{
     2(x_{F} - x_{E}) & 2(y_{F} - y_{E}) \\
     0 & 0
     \end{bmatrix} \cdot M_E}
-\end{equation*}
-</div>
-&nbsp;
+\end{equation*}\\
 
-<p class="p-boxed"></p>
+\newpage
 
-Les points \\(E\\), \\(F\\) et \\(G\\) d'une part et \\(B\\), \\(F\\) et \\(H\\) d'autre part sont alignés. On peut donc obtenir les écarts en \\(G\\) et en \\(H\\) à partir de l'écart en \\(F\\) :
+Les points $E$, $F$ et $G$ d'une part et $B$, $F$ et $H$ d'autre part sont alignés. On peut donc obtenir les écarts en $G$ et en $H$ à partir de l'écart en $F$ :
 
-<div>
 \begin{equation*}
-    \boxed{\Delta G = M_{G} \cdot \Delta v_{1}
+    \boxed{\Delta G = M_{G} \cdot \Delta v_{1} }
     \hspace{0.2cm}
     \text{avec}
     \hspace{0.2cm}
-    M_G = \dfrac{d_{EG}}{d_{EF}} \cdot M_F}
+    \boxed{M_G = \dfrac{\norm{EG}}{\norm{EF}} \cdot M_F}
 \end{equation*}
-</div>
-&nbsp;
 
-<div>
 \begin{equation*}
-    \boxed{\Delta H = M_{H} \cdot \Delta v_{1}
+    \boxed{\Delta H = M_{H} \cdot \Delta v_{1} }
     \hspace{0.2cm}
     \text{avec}
     \hspace{0.2cm}
-    M_H = \dfrac{d_{BH}}{d_{BF}} \cdot M_F}
-\end{equation*}
-</div>
-&nbsp;
+    \boxed{M_H = \dfrac{\norm{BH}}{\norm{BF}} \cdot M_F}
+\end{equation*}~\\    
 
-<p class="p-boxed"></p>
+Nous pouvons à présent obtenir l'écart en $I$ en nous plaçant dans le triangle $GHI$ où les positions des points $G$ et $H$ ainsi que l'élongation $v_2$ du segment $HI$ sont variables. Nous obtenons le système $S_3$ suivant :
 
-Nous pouvons à présent obtenir l'écart en \\(I\\) en nous plaçant dans le triangle \\(GHI\\) où les positions des points \\(G\\) et \\(H\\) ainsi que l'élongation \\(v_2\\) du segment \\(HI\\) sont variables. Nous obtenons le système \\(S_3\\) suivant :
-
-<div>
 \begin{equation*}
 S_{3} 
 \left \{
 \begin{array}{l}
-    \left\langle \overrightarrow{GI} \middle| \overrightarrow{GI} \right\rangle - d_{GI}^{\hspace{0.1cm}2} = (x_{I} - x_{G})^{2} + (y_{I} - y_{G})^{2} - d_{GI}^{\hspace{0.1cm}2} = 0 \\
+    \scal{GI}{GI} - \norm{GI}^{\hspace{0.1cm}2} = (x_{I} - x_{G})^{2} + (y_{I} - y_{G})^{2} - \norm{GI}^{\hspace{0.1cm}2} = 0 \\
     ~\\
-    \left\langle \overrightarrow{HI} \middle| \overrightarrow{HI} \right\rangle - v_{2}^{\hspace{0.1cm} 2} = (x_{I} - x_{H})^{2} + (y_{I} - y_{H})^{2} - v_{2}^{\hspace{0.1cm} 2} = 0 \\
+    \scal{HI}{HI} - v_{2}^{\hspace{0.1cm} 2} = (x_{I} - x_{H})^{2} + (y_{I} - y_{H})^{2} - v_{2}^{\hspace{0.1cm} 2} = 0 \\
 \end{array}
 \right.
-\end{equation*}
-</div>
-&nbsp;
+\end{equation*}\\
 
-Nous le dérivons par rapport à \\(x_{I}\\), \\(y_{I}\\), \\(x_{G}\\), \\(y_{G}\\), \\(x_{H}\\), \\(y_{H}\\) et \\(v_{2}\\) pour obtenir la jacobienne suivante :
 
-<div>
+Nous le dérivons par rapport à $x_{I}$, $y_{I}$, $x_{G}$, $y_{G}$, $x_{H}$, $y_{H}$ et $v_{2}$ pour obtenir la jacobienne suivante :
+
 \begin{equation*}
     \hspace{-0.5cm}
-    \nabla S_{3_{I, G, H, v_{2}}} = \begin{bmatrix}
+    \nabla S_{3_{I, G, H, v_{2}}} = \begin{bNiceArray}{cc|cc|cc|c}
     2(x_{I} - x_{G}) & 2(y_{I} - y_{G}) & -2(x_{I} - x_{G}) & -2(y_{I} - y_{G}) & 0 & 0 & 0 \\
     2(x_{I} - x_{H}) & 2(y_{I} - y_{H}) & 0 & 0 & -2(x_{I} - x_{H}) & -2(y_{I} - y_{H}) & -2v_{2} \\
-    \end{bmatrix}
+    \end{bNiceArray}
 \end{equation*}
-</div>
-&nbsp;
 
-<div>
 \begin{equation*}
     \text{On pose} \hspace{0.2cm} 
-    \nabla S_{3_{I, G, H, v_{2}}} = \begin{bmatrix}
+    \nabla S_{3_{I, G, H, v_{2}}} = \begin{bNiceArray}{c|c|c|c}
     M_{1} & -M_{2} & -M_{3} & -M_{4} 
-    \end{bmatrix}
+    \end{bNiceArray}
     \hspace{0.2cm} 
     \text{avec}
 \end{equation*}
-</div>
-&nbsp;
 
-<div>
 \begin{equation*}
     M_1 = \begin{bmatrix}
     2(x_{I} - x_{G}) & 2(y_{I} - y_{G}) \\
@@ -399,10 +388,7 @@ Nous le dérivons par rapport à \\(x_{I}\\), \\(y_{I}\\), \\(x_{G}\\), \\(y_{G}
     0 & 0
     \end{bmatrix}
 \end{equation*}
-</div>
-&nbsp;
 
-<div>
 \begin{equation*}
 \hspace{-3.55cm}
     M_3 = \begin{bmatrix}
@@ -415,12 +401,11 @@ Nous le dérivons par rapport à \\(x_{I}\\), \\(y_{I}\\), \\(x_{G}\\), \\(y_{G}
     2 v_2
     \end{bmatrix}
 \end{equation*}
-</div>
-&nbsp;
 
-On a alors la relation suivante permettant de relier l'écart en \\(I\\) à \\(\Delta v_1\\) et \\(\Delta v_2\\) à la condition que \\(I\\), \\(G\\) et \\(H\\) ne soient pas alignés (ce qui est toujours vérifié en raison de la structure de la patte) :
+\newpage
 
-<div>
+On a alors la relation suivante permettant de relier l'écart en $I$ à $\Delta v_1$ et $\Delta v_2$ à la condition que $I$, $G$ et $H$ ne soient pas alignés\footnote[1]{Cela est toujours vérifié en raison de la structure de la patte (cf. \figureautorefname{ \ref{fig:SchemaLeg})}} :
+
 \begin{equation*}
     \Delta I =
     M_{1}^{-1} \cdot \left( 
@@ -432,58 +417,48 @@ On a alors la relation suivante permettant de relier l'écart en \\(I\\) à \\(\
     M_{2} \cdot M_{G} + M_{3} \cdot M_{H} \right) \cdot \Delta v1 +  
     M_{1}^{-1} \cdot M_{4} \cdot \Delta v_{2} 
 \end{equation*}
-</div>
-&nbsp;
 
-<div>
 \begin{equation*}
+    \text{C'est à dire} \hspace{0.2cm}
     \boxed{
-    \array{
     \Delta I =
     M_I \cdot
     \begin{bmatrix}
     \Delta v_{1}\\
-    \Delta v_{2} \end{bmatrix}
-    \\[0.2cm]
-    \text{avec}
-    \\[0.2cm]
-    \hspace{0.2cm}
-    M_I = \begin{bmatrix}
-    V1 & V2 
-    \end{bmatrix}
-    \hspace{1cm}
-    V_1 = M_{1}^{-1} \cdot \left( 
-    M_{2} \cdot M_{G} + M_{3} \cdot M_{H} \right)
-    \hspace{1cm}
-    V_2 = M_{1}^{-1} \cdot M_{4}
-    \hspace{0.2cm}}}
+    \Delta v_{2} \end{bmatrix}}
 \end{equation*}
-</div>
-&nbsp;
 
-<p class="p-boxed"></p>
+\begin{equation*}
+    \text{avec}
+    \hspace{0.2cm}
+    \boxed{M_I = \begin{bNiceArray}{c|c}
+    V1 & V2 
+    \end{bNiceArray}}
+    \hspace{0.5cm}
+    \boxed{V_1 = M_{1}^{-1} \cdot \left( 
+    M_{2} \cdot M_{G} + M_{3} \cdot M_{H} \right)}
+    \hspace{0.5cm}
+    \boxed{V_2 = M_{1}^{-1} \cdot M_{4}}
+\end{equation*}\\
 
-Enfin, du fait que \\(G\\), \\(I\\) et \\(J\\) sont alignés, on obtient l'écart de position en \\(J\\) :
 
-<div>
+Enfin, du fait que $G$, $I$ et $J$ sont alignés, on obtient l'écart de position en J :
+
 \begin{equation*}
     \boxed{\Delta J =
     M_J \cdot
     \begin{bmatrix}
     \Delta v_{1}\\
-    \Delta v_{2} \end{bmatrix}
+    \Delta v_{2} \end{bmatrix}}
     \hspace{0.2cm}
     \text{avec}
     \hspace{0.2cm}
-    M_J = \dfrac{d_{GJ}}{d_{GI}} \cdot M_I}
-\end{equation*}
-</div>
-&nbsp;
+    \boxed{M_J = \dfrac{\norm{GJ}}{\norm{GI}} \cdot M_I}
+\end{equation*}\\
 
-La matrice \\(M_J\\) ainsi construite est la jacobienne \\(J_2\\) associée à notre modèle cinématique direct dans le plan de la patte :
+Nous avons donc pu calculer la jacobienne $J_2$ associée à notre modèle cinématique direct dans le plan de la patte :
 
-<div>
-\begin{equation*}
+\begin{equation}
     \boxed{\begin{bmatrix}
     \Delta x\\
     \Delta y \end{bmatrix}
@@ -492,54 +467,55 @@ La matrice \\(M_J\\) ainsi construite est la jacobienne \\(J_2\\) associée à n
     \begin{bmatrix}
     \Delta v_{1}\\
     \Delta v_{2} \end{bmatrix}
+    }
     \hspace{0.2cm}
     \text{avec}
     \hspace{0.2cm}
-    J_2 = M_J}
-\end{equation*}
-</div>
-&nbsp;
+    \boxed{J_2 = M_J}
+    \label{J2}
+\end{equation}\\
 
-#### Cinématique directe dans l'espace
+\newpage
+%######################### Changement de repère #########################
 
-L'objectif à présent est de ramener notre modèle dans l'espace en ajoutant l'influence du vérin \\(v_3\\) sur notre cinématique directe. Le référentiel cible est le référentiel \\((\overrightarrow{x}, \overrightarrow{y}, \overrightarrow{z})\\) représenté sur la figure suivante. On notera que le vecteur \\(\overrightarrow{Y}\\) utilisés dans la partie précédente est devenu le vecteur \\(\overrightarrow{Z}\\) dans cette modélisation à des fins de convention.
+\subsection{Cinématique directe dans l'espace}
+\label{CinSpace}
 
-&nbsp;
+L'objectif à présent est de ramener notre modèle dans l'espace en ajoutant l'influence du vérin $v_3$ sur notre cinématique directe. Le référentiel cible est le référentiel $(\overrightarrow{x}, \overrightarrow{y}, \overrightarrow{z})$ représenté sur la \figureautorefname{ \ref{fig:ChgtRef}}. On notera que le vecteur $\overrightarrow{Y}$ utilisés dans la partie précédente et défini à la \figureautorefname{ \ref{fig:SchemaLeg}} est devenu le vecteur $\overrightarrow{Z}$ sur la \figureautorefname{ \ref{fig:ChgtRef}} à des fins de convention.
+\vspace{1cm}
 
-<center>
-<img src="/images/projects/megabot/chgt_ref.webp" alt="Image not found !" width="80%"/>
-</center>
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{img/ChgtRef.png}
+    \caption{Changement de référentiel (patte avant gauche)}
+    \label{fig:ChgtRef}
+\end{figure}
 
-&nbsp;
+En premier lieu, nous cherchons à exprimer l'angle $\alpha$ de la patte au châssis en fonction de l'élongation du vérin $v_3$. Pour cela, nous nous plaçons dans le triangle $KLO$ (cf. \figureautorefname{ \ref{fig:Angle}}).
 
-En premier lieu, nous cherchons à exprimer l'angle \\(\alpha\\) de la patte au châssis en fonction de l'élongation du vérin \\(v_3\\). Pour cela, nous nous plaçons dans le triangle \\(KLO\\).
-
-<center>
-<img src="/images/projects/megabot/angle.webp" alt="Image not found !" width="80%"/>
-</center>
-&nbsp;
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{img/Angle.png}
+    \caption{Relation entre $v_3$ et $\alpha$}
+    \label{fig:Angle}
+\end{figure}
 
 En utilisant la loi des cosinus, nous obtenons la relation suivante :
-
-<div>
 \begin{equation*}
 \begin{array}{lc}
-    &d_{OK} \cdot d_{OL} \cdot \cos{\gamma} = \dfrac{1}{2} ( d_{OK}^{\hspace{0.1cm} 2} + d_{OL}^{\hspace{0.1cm} 2} - v_3^{\hspace{0.1cm} 2}) \\~\\
-    \implies & \dfrac{d_{OK}}{d_{OL}} +
-        \dfrac{d_{OL}}{d_{OK}} -
-        \dfrac{v_3}{d_{OK} d_{OL}} - 
+    &\norm{OK} \cdot \norm{OL} \cdot \cos{\gamma} = \dfrac{1}{2} ( \norm{OK}^{\hspace{0.1cm} 2} + \norm{OL}^{\hspace{0.1cm} 2} - v_3^{\hspace{0.1cm} 2}) \\~\\
+    \implies & \dfrac{\norm{OK}}{\norm{OL}} +
+        \dfrac{\norm{OL}}{\norm{OK}} -
+        \dfrac{v_3}{\norm{OK} \norm{OL}} - 
         2 \cdot \cos(\gamma) = 0
 \end{array}
 \end{equation*}
-</div>
-&nbsp;
 
 Nous construisons ensuite la jacobienne associée, ce qui nous permet d'obtenir la relation matricielle suivante :
 
-<div>
 \begin{equation*}
     \begin{bmatrix}
-        2 \cdot \sin(\gamma) & \dfrac{- 2 \cdot v_3}{d_{OK}d_{OL}}
+        2 \cdot \sin(\gamma) & \dfrac{- 2 \cdot v_3}{\norm{OK}\norm{OL}}
     \end{bmatrix} \cdot
     \begin{bmatrix}
         \Delta \gamma \\
@@ -547,53 +523,46 @@ Nous construisons ensuite la jacobienne associée, ce qui nous permet d'obtenir 
     \end{bmatrix} = 
     0
 \end{equation*}
-</div>
-&nbsp;
 
-Du fait que \\(\Delta \alpha\\) soit égal à \\(\Delta \gamma\\), nous obtenons enfin la relation suivante :
+Du fait que $\Delta \alpha$ soit égal à $\Delta \gamma$, nous obtenons enfin la relation suivante :
 
-<div>
 \begin{equation*}
 \boxed{
-    \Delta \alpha = \dfrac{v_3}{\sin{(\alpha - \beta)} \cdot d_{OK} d_{OL}} \cdot \Delta v_3
+    \Delta \alpha = \dfrac{v_3}{\sin{(\alpha - \beta)} \cdot \norm{OK} \norm{OL}} \cdot \Delta v_3
     }
 \end{equation*}
-</div>
-&nbsp;
+\vspace{0.1cm}
 
-L'obtention de la relation entre \\(\Delta \alpha\\) et \\(\Delta v_3\\) nous permet d'obtenir la matrice liant \\(( \Delta X, \Delta Z, \Delta\alpha )\\) à \\((\Delta v_1, \Delta v_2, \Delta v_3)\\). Pour cela, nous réutilisons \\(J_2\\) obtenue lors de la résolution de la cinématique directe dans le plan de la patte :
-
-<div>
-\begin{equation*}
+L'obtention de la relation entre $\Delta \alpha$ et $\Delta v_3$ nous permet d'obtenir la matrice liant $( \Delta X, \Delta Z, \Delta\alpha )$ à $(\Delta
+v_1, \Delta v_2, \Delta v_3)$. Pour cela, nous réutilisons $J_2$ obtenue lors de la résolution de la cinématique directe dans le plan de la patte \eqref{J2} :\\
+\begin{equation}
 \boxed{
     \begin{bmatrix}
         \Delta X \\ \Delta Z \\ \Delta\alpha 
     \end{bmatrix} = A \cdot 
         \begin{bmatrix}
         \Delta v_{1} \\ \Delta v_{2} \\ \Delta v_{3}
-    \end{bmatrix}
+    \end{bmatrix}}
     \hspace{0.2cm}
     \text{avec}
     \hspace{0.2cm}
-    A = \begin{bmatrix}
+    \boxed{A = \begin{bmatrix}
         J_2 & \begin{matrix}0 \\ 0\end{matrix} \\
-        \begin{matrix} 0 & 0\end{matrix} & \dfrac{v_3}{\sin(\alpha - \beta) \cdot d_{OK}d_{OL}}
+        \begin{matrix} 0 & 0\end{matrix} & \dfrac{v_3}{\sin(\alpha - \beta) \cdot \norm{OK}\norm{OL}}
     \end{bmatrix}}
     \label{A}
-\end{equation*}
-</div>
-&nbsp;
+\end{equation}~\\
 
-La dernière étape permettant l'obtention de notre jacobienne dans le référentiel \\((\overrightarrow{x}, \overrightarrow{y}, \overrightarrow{z})\\) est d'obtenir la matrice reliant \\((\Delta x, \Delta y, \Delta z)\\) à \\((\Delta X, \Delta Z, \Delta \alpha)\\). Pour cela, nous devons étudier la rotation d'angle \\(\alpha\\) séparant \\((\overrightarrow{X}, \overrightarrow{Y}, \overrightarrow{Z})\\) et \\((\overrightarrow{x}, \overrightarrow{y}, \overrightarrow{z})\\).
+La dernière étape permettant l'obtention de notre jacobienne dans le référentiel $(\overrightarrow{x}, \overrightarrow{y}, \overrightarrow{z})$ est d'obtenir la matrice reliant $(\Delta x, \Delta y, \Delta z)$ à $(\Delta X, \Delta Z, \Delta \alpha)$. Pour cela, nous devons étudier la rotation d'angle $\alpha$ séparant $(\overrightarrow{X}, \overrightarrow{Y}, \overrightarrow{Z})$ et $(\overrightarrow{x}, \overrightarrow{y}, \overrightarrow{z})$\\
 
-<center>
-<img src="/images/projects/megabot/rota.webp" alt="Image not found !" width="50%"/>
-</center>
-&nbsp;
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{img/Rota.png}
+    \caption{Rotation $\alpha$}
+\end{figure}
 
-Nous notons tout d'abord que l'inégalité \\(0<\alpha<\dfrac{\pi}{2}\\) est toujours vérifiée de par la structure du châssis. De ce fait, nous nous autorisons l'expression de la rotation d'un angle de \\(\dfrac{\pi}{2} - \alpha\\) sans nous questionner sur le signe de l'angle de rotation.
+Nous notons tout d'abord que l'inégalité $0<\alpha<\dfrac{\pi}{2}$ est toujours vérifiée de par la structure du châssis. De ce fait, nous nous autorisons l'expression de la rotation d'un angle de $\dfrac{\pi}{2} - \alpha$ sans nous questionner sur le signe de l'angle de rotation.
 
-<div>
 \begin{equation*}
     \begin{bmatrix}
         x \\
@@ -614,13 +583,12 @@ Nous notons tout d'abord que l'inégalité \\(0<\alpha<\dfrac{\pi}{2}\\) est tou
         \sin(\frac{\pi}{2}-\alpha) & \cos(\frac{\pi}{2}-\alpha) & 0\\
         0& 0& 1
     \end{bmatrix}
-\end{equation*}
-</div>
-&nbsp;
+\end{equation*}\\
 
-En dérivant cette relation par rapport à \\(\alpha\\), nous obtenons la relation suivante :
+\newpage
 
-<div>
+En dérivant cette relation par rapport à $\alpha$, nous obtenons la relation suivante :
+
 \begin{equation*}
     \begin{bmatrix}
         \Delta x \\ \Delta y \\ \Delta z 
@@ -640,10 +608,7 @@ En dérivant cette relation par rapport à \\(\alpha\\), nous obtenons la relati
         \Delta X \\ \Delta Y \\ \Delta Z
     \end{bmatrix}
 \end{equation*}
-</div>
-&nbsp;
 
-<div>
 \begin{equation*}
     \text{où}
     \hspace{0.5cm}
@@ -653,13 +618,10 @@ En dérivant cette relation par rapport à \\(\alpha\\), nous obtenons la relati
         -\cos(\frac{\pi}{2}-\alpha) & \sin(\frac{\pi}{2}-\alpha) & 0\\
         0& 0& 0
     \end{bmatrix}
-\end{equation*}
-</div>
-&nbsp;
+\end{equation*}\\
 
-Nous savons que \\(Y\\) et \\(\Delta Y\\) sont constant dans notre modèle et valent \\(Y = 0\\) et \\(\Delta Y = 0\\). De ce fait il nous est possible de simplifier la relation précédente en :
+Nous savons que $Y$ et $\Delta Y$ sont constant dans notre modèle et valent $Y = 0$ et $\Delta Y = 0$. De ce fait il nous est possible de simplifier la relation précédente en :
 
-<div>
 \begin{equation*}
     \begin{bmatrix}
         \Delta x \\ \Delta y \\ \Delta z 
@@ -679,24 +641,22 @@ Nous savons que \\(Y\\) et \\(\Delta Y\\) sont constant dans notre modèle et va
     \begin{bmatrix}
         \Delta X \\ \Delta Z
     \end{bmatrix}
-\end{equation*}
-</div>
-&nbsp;
+\end{equation*}\\
 
 Ou bien, formulé autrement :
 
-<div>
-\begin{equation*}
+\begin{equation}
 \boxed{
     \begin{bmatrix}
         \Delta x \\ \Delta y \\ \Delta z 
     \end{bmatrix} = B \cdot
     \begin{bmatrix}
         \Delta X \\ \Delta Z \\ \Delta \alpha
-    \end{bmatrix}
+    \end{bmatrix}}
     \hspace{0.2cm}
     \text{avec}
     \hspace{0.2cm}
+    \boxed{
     B =     
     \begin{bmatrix}
         \cos(\frac{\pi}{2}-\alpha) & 0 & X \cdot \sin(\frac{\pi}{2}-\alpha) \\
@@ -704,14 +664,12 @@ Ou bien, formulé autrement :
         0 & 1 & 0
     \end{bmatrix}}
     \label{B}
-\end{equation*}
-</div>
-&nbsp;
+\end{equation}\\
 
-A partir des matrices \\(A\\) et \\(B\\), il devient possible de construire \\(J_3\\), la matrice reliant \\((\Delta x, \Delta y, \Delta z)\\) à \\((\Delta v_1, \Delta v_2, \Delta v_3)\\) :
+A partir des matrices $A$ et $B$ calculés respectivement en \eqref{A} et \eqref{B}, il devient possible de construire $J_3$, la matrice reliant $(\Delta x, \Delta y, \Delta z)$ à $(\Delta v_1, \Delta v_2, \Delta v_3)$ :
 
-<div>
-\begin{equation*}
+
+\begin{equation}
     \boxed{\begin{bmatrix}
     \Delta x\\
     \Delta y \\
@@ -724,27 +682,30 @@ A partir des matrices \\(A\\) et \\(B\\), il devient possible de construire \\(J
     \Delta v_{2} \\
     \Delta v_3
     \end{bmatrix}
+    }
     \hspace{0.2cm}
     \text{avec}
     \hspace{0.2cm}
-    J_3 = B \cdot A
-    \hspace{0.2cm}}
-\end{equation*}
-</div>
-&nbsp;
+    \boxed{J_3 = B \cdot A}
+    \label{J3}
+\end{equation}~\\
 
-#### Généralisation
+\newpage
 
-Nous avons à présent explicité \\(J_3\\), la jacobienne associée au modèle cinématique direct d'une patte du Megabot dans son référentiel. Afin de pouvoir appliquer un contrôle simultané sur l'ensemble des pattes, il est nécessaire de généraliser notre modèle cinématique à l'ensemble de notre robot.
+\subsection{Généralisation}
+\label{CinGen}
 
-<center>
-<img src="/images/projects/megabot/robot_ref.webp" alt="Image not found !" width="90%"/>
-</center>
-&nbsp;
+Nous avons à présent explicité $J_3$, la jacobienne associée au modèle cinématique direct d'une patte du Megabot dans son référentiel. Afin de pouvoir appliquer un contrôle simultané sur l'ensemble des pattes, il est nécessaire de généraliser notre modèle cinématique à l'ensemble de notre robot.
 
-Nous noterons à partir de maintenant \\(\Delta V\\) les variations d'élongation des 12 vérins et \\(\Delta X\\) les variations de position de l'extrémité des pattes dans le référentiel \\((\overrightarrow{x}, \overrightarrow{y}, \overrightarrow{z})\\) du robot. La nouvelle matrice de passage entre ces vecteurs sera nommée \\(J_{12}\\) :
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{img/RobotRef.png}
+    \caption{Passage au référentiel du robot}
+    \label{fig:Chassis}
+\end{figure}
 
-<div>
+Nous noterons à partir de maintenant $\Delta V$ les variations d'élongation des 12 vérins et $\Delta X$ les variations de position de l'extrémité des pattes dans le référentiel du robot (cf. \figureautorefname{ \ref{fig:Chassis}}). La nouvelle matrice de passage entre ces vecteurs sera nommée $J_{12}$ :
+
 \begin{equation*}
     \boxed{
     \Delta X = J_{12} \cdot \Delta V
@@ -786,12 +747,9 @@ Nous noterons à partir de maintenant \\(\Delta V\\) les variations d'élongatio
     \Delta z_D\\
     \end{bmatrix}
 \end{equation*}
-</div>
-&nbsp;
 
-On peut alors remarquer qu'en utilisant des matrices de rotation il est facile d'exprimer \\(J_{12}\\) à partir de \\(J_3\\) qui a été calculée dans la partie précédente :
+On peut alors remarquer qu'en utilisant des matrices de rotation il est facile d'exprimer $J_{12}$ à partir de $J_3$ qui a été calculée en \eqref{J3} :
 
-<div>
 \begin{equation*}
     \boxed{
     J_{12} = \begin{bmatrix}
@@ -801,11 +759,9 @@ On peut alors remarquer qu'en utilisant des matrices de rotation il est facile d
     0 & 0 & 0 & R_{\pi} \cdot J_3
     \end{bmatrix}
     }
-\end{equation*}
-</div>
-&nbsp;
+\end{equation*}~\\
 
-Les jacobiennes \\(J_2\\), \\(J_3\\) et \\(J_{12}\\) calculées permettent toutes d'élaborer des algorithmes de contrôle respectivement d'une patte dans son plan, d'une patte dans son référentiel et de l'ensemble des pattes dans le référentiel du Megabot en utilisant un solveur QP. Néanmoins, la problématique importante de gestion du centre de gravité peut également être traitée dès la phase de contrôle, c'est pourquoi nous allons l'intégrer à nos équations.
+Les jacobiennes $J_2$, $J_3$ et $J_{12}$ calculées permettent toutes d'élaborer des algorithmes de contrôle respectivement d'une patte dans son plan, d'une patte dans son référentiel et de l'ensemble des pattes dans le référentiel du Megabot en utilisant un solveur QP comme expliqué dans la partie \ref{CinInv}. Néanmoins, la problématique importante de gestion du centre de gravité peut également être traitée dès la phase de contrôle, c'est pourquoi nous allons l'intégrer à nos équations.
 
 <!-- ## Existant
 
@@ -1040,10 +996,10 @@ Dans le cas où l'on souhaite commander la position du centre de gravité, on do
     \text{et}
     \hspace{0.5 cm}
     \boxed{J_{15:12} =    
-    \begin{bmatrix}
+    \begin{bNiceArray}{c|c}
     J_{12} & J_C 
-    \end{bmatrix}}
-\end{equation*}
+    \end{bNiceArray}}
+\end{equation*}~\\
 
 C'est cette seconde option qui a été choisie dans le cas du Megabot. Néanmoins la matrice $J_{15:12}$ ne peut pas être exploitée telle quelle par le solveur QP explicité dans la partie \ref{CinInv}, car la matrice $J_{15:12}\hspace{0.15cm}^TJ_{15:12}$ est singulière. Une solution pour contourner la singularité de cette matrice, est d'ajouter une régularisation de coefficient $r$ à notre optimisation quadratique :
 
@@ -1082,6 +1038,6 @@ L'objectif à minimiser devient alors :
     \begin{array}{cc}
         \underset{\Delta V_{k+1}}{\textit{minimize}} & V_k^T (J_{15:12}\hspace{0.15cm}^TJ_{15:12} + r Id_{12})\Delta V_k - 2 \left( \overline{\Delta X_{k}}^T J_{15:12} \Delta V_k \right)
     \end{array}}
-\end{equation*}
+\end{equation*}~\\
 
 \indent Ainsi on transforme la matrice singulière $J_{15:12}\hspace{0.15cm}^TJ_{15:12}$ de notre précédente optimisation quadratique en la matrice $J_{15:12}\hspace{0.15cm}^TJ_{15:12} + r Id_{12}$. Cela permet d'en assurer la non-singularité, car il n'y a plus de dépendance entre les lignes de la matrice. Cette régularisation implique également l'homogénisation des variations de vérins, l'homogénisation étant d'autant plus forte que la valeur choisie pour $r$ est élevée.

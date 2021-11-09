@@ -45,7 +45,9 @@
           </p>
         {{ if .button.enable }}
         {{ with .button }}
+        <center>
         <a href="{{ .link | relURL }}" class="btn btn-small mt-20">{{ .label }}</a>
+        </center>
         {{ end }}
         {{ end }}
       </div>

@@ -3,7 +3,7 @@
 {{ $data := index site.Data site.Language.Lang }}
 
 <!-- banner -->
-{{ if $data.homepage.banner.enable }}
+<!-- {{ if $data.homepage.banner.enable }}
 {{ with $data.homepage.banner }}
 <section class="slider {{if .bg_overlay}}overly{{end}}" style="background-image: url('{{ .bg_image | absURL }}');">
   <div class="container">
@@ -15,6 +15,30 @@
           {{ if .button.enable }}
           {{ with .button }}
           <a href="{{ .link | relLangURL }}" target="_blank" class="btn btn-main animated fadeInUp">{{ .label }}</a>
+          {{ end }}
+          {{ end }}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}
+{{ end }} -->
+<!-- /banner -->
+
+<!-- banner -->
+{{ if $data.homepage.banner.enable }}
+{{ with $data.homepage.banner }}
+<section class="slider {{if .bg_overlay}}overly{{end}}" style="background-image: url('{{ .bg_image | absURL }}');">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="block">
+          <h1>{{ .title | markdownify }}</h1>
+          <p>{{ .content | markdownify }}</p>
+          {{ if .button.enable }}
+          {{ with .button }}
+          <a href="{{ .link | relLangURL }}" target="_blank" class="btn btn-banner animated fadeInUp">{{ .label }}</a>
           {{ end }}
           {{ end }}
         </div>
@@ -35,8 +59,8 @@
       <div class="col-md-12">
         <div class="block">
           <div class="section-title">
-            <h2>{{ .title | markdownify }}</h2>
-            <p>{{ .description | markdownify }}</p>
+            <!-- <h2>{{ .title | markdownify }}</h2> -->
+            <!-- <p>{{ .description | markdownify }}</p> -->
           </div>
           <p>{{ .content | markdownify }}</p>
         </div>

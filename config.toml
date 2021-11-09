@@ -4,7 +4,7 @@ disqusShortname = ""
 paginate = "4"
 summaryLength = "30"
 theme = "airspace-hugo"
-title = "Marc's projects"
+title = "Site de Marc Duclusaud"
 [Languages.en]
 contentDir = "content/english"
 copyright = "Copyright &copy; 2020 [Themefisher](https://themefisher.com) All Rights Reserved"
@@ -15,11 +15,11 @@ weight = 1
 # Sections en haut de page
 [[Languages.en.menu.main]]
 URL = "/"
-name = "Home"
+name = "Accueil"
 weight = 1
 [[Languages.en.menu.main]]
 URL = "projects"
-name = "Projects"
+name = "Projets"
 weight = 2
 [[Languages.en.menu.main]]
 URL = "maker"
@@ -27,31 +27,22 @@ name = "Maker"
 weight = 3
 [[Languages.en.menu.main]]
 URL = "about"
-name = "About me"
+name = "Qui suis-je ?"
 weight = 4
 
 # Sections en fin de page
 [[Languages.en.menu.footer]]
-URL = "about"
-name = "About me"
-weight = 1
-[[Languages.en.menu.footer]]
 URL = "projects"
-name = "Projects"
-weight = 2
+name = "Projets"
+weight = 1
 [[Languages.en.menu.footer]]
 URL = "maker"
 name = "Maker"
-weight = 3
+weight = 2
 [[Languages.en.menu.footer]]
 URL = "about"
-name = "About me"
-weight = 4
-
-
-
-
-
+name = "Qui suis-je ?"
+weight = 3
 
 [markup.goldmark.renderer]
 unsafe = true
@@ -63,7 +54,7 @@ description = ""
 email = "marc_dcls@outlook.fr"
 google_analitycs_id = ""
 location = ""
-logo = "images/misc/M_logo.webp"
+logo = "" # "images/misc/M_logo.webp"
 logo_width = "40px"
 mobile = "+33 6 77 47 13 45"
 multi_author = false
@@ -109,7 +100,12 @@ icon = "ion-social-github"
 link = "https://github.com/MarcDcls"
 [[params.social]]
 icon = "ion-social-linkedin"
-link = "https://www.linkedin.com/in/marc-duclusaud-260b46223/"
+link = "https://www.linkedin.com/in/marc-duclusaud-260b46223"
+
+# [[params.social]]
+# icon = "images/misc/icon_eirlab.png"
+# link = "https://www.eirlab.net"
+
 # [[params.social]]
 # icon = "ion-social-twitter"
 # link = "https://twitter.com/"

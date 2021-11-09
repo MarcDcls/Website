@@ -5,13 +5,27 @@ about:
   title : "Marc Duclusaud"
   image : "images/misc/photo_marc_circle.webp"
   
-  content : "Currently student in robotics at ENSEIRB-MATMECA engineering school, \\
+  content : "Actuellement étudiant-ingénieur en robotique à l'ENSEIRB-MATMECA à Bordeaux, je suis passionné de robotique 
+  et plus particulièrement de robotique appliquée au domaine des prothèses. Cette passion couplée à mon envie d'en apprendre plus sur le sujet est ce qui
+  me pousse aujourd'hui à vouloir prolonger mes études par une thèse dans cette branche. Avant de me spécialiser, j'ai suivi un cursus tourné vers 
+  l'informatique, ce qui en fait un domaine dans lequel j'ai acquis des compétences solides, qui je pense se révèlerons utiles à cette fin.
+  
+  
+  En parallèles de mes études, je suis également FabManager au sein du Fablab de Bordeaux INP où j'ai la chance de pouvoir travailler sur une multitude de 
+  projets technologiques variés me permettant de développer mes compétences dans plusieurs domaines tels que la mécanique, l'électronique ou encore 
+  les mathématiques. Cette expérience m'a aussi permis de me former à l'utilisation de nombreux outils et machines-outils comprenant les 
+  imprimantes 3D, les découpeuses laser ou encore les CNC. 
 
-  I use this website to share my work on several technological projects"
+
+  Si vous souhaitez échanger avec moi par rapport à un des projets présent sur ce site, n'hésitez pas à me contacter, je suis disponible pour toute 
+  information complémentaire. Par ailleurs, si mon profil vous intéresse et que vous travaillez dans le domaine de la robotique ou des prothèses, 
+  je vous invite également à me contacter, mon CV étant consultable ici :"
+  
+  # content : "Currently student in robotics at ENSEIRB-MATMECA engineering school, I use this website to share my work on several technological projects"
 
   button:
     enable : true
-    label : "Resume"
+    label : "CV"
     link : "/pdf/CV_Marc_Duclusaud.pdf"
 
 ################################ Bandeau noir #####################################
