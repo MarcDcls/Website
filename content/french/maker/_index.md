@@ -1,6 +1,5 @@
 ---
-title: "Projets"
-description: "Description rapide des projets"
+title: "Maker"
 draft: false
 bg_image: "images/banners/common_banner.webp"
 ---

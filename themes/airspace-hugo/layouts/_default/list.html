@@ -15,7 +15,10 @@
 							<h3 class="post-title"><a href="{{ .Permalink }}">{{ .Title }}</a></h3>
 							<div class="post-meta">
 								<ul>
-									<li><i class="ion-calendar"></i> {{ .PublishDate.Format "January 2, 2006" }}
+									<li><i class="ion-calendar"></i> 
+									{{ $mymonths := index $.Site.Data.mois }}{{ .Date.Day }}
+									{{ index $mymonths (printf "%d" .Date.Month) }} {{ .Date.Year }}
+									<!-- {{ .PublishDate.Format "January 2, 2006" }} -->
 									</li>
 								</ul>
 							</div>

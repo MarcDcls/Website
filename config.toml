@@ -6,7 +6,7 @@ summaryLength = "30"
 theme = "airspace-hugo"
 title = "Site de Marc Duclusaud"
 [Languages.en]
-contentDir = "content/english"
+contentDir = "content/french"
 copyright = "Copyright &copy; 2020 [Themefisher](https://themefisher.com) All Rights Reserved"
 languageCode = "en-Us"
 languageName = "Fr"

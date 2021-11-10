@@ -4,7 +4,6 @@ image = "images/projects/sandtable/SandTableNoBackground.png"
 title = "Sand Table"
 date = "2021-05-20"
 description = "Conception et construction d'une table basse contenant un dispositif caché permettant le tracé de figures dans un bac de sable à l'aide d'une bille en acier"
-
 +++
 
 
