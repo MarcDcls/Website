@@ -8,33 +8,27 @@
 			<div class="post">
 				{{ $paginator := .Paginate .Data.Pages }}
 				{{ range $paginator.Pages }}
-
-				<a href="{{ .Permalink }}">
-					<div class="cadre">
-						<div class="col-md-8">
-							<h3 class="post-title"><a href="{{ .Permalink }}">{{ .Title }}</a></h3>
-							<div class="post-meta">
-								<ul>
-									<li><i class="ion-calendar"></i> 
+				<div class="cadre" onclick="location.href='{{ .Permalink }}'">
+					<div class="col-md-8">
+						<h3 class="post-title">{{ .Title }}</h3>
+						<div class="post-meta">
+							<ul>
+								<li><i class="ion-calendar"></i>
 									{{ $mymonths := index $.Site.Data.mois }}{{ .Date.Day }}
 									{{ index $mymonths (printf "%d" .Date.Month) }} {{ .Date.Year }}
 									<!-- {{ .PublishDate.Format "January 2, 2006" }} -->
-									</li>
-								</ul>
-							</div>
-							<div class="post-content">
-								<p>{{ .Params.Description }}</p>
-								<!-- <a href="{{ .Permalink }}" class="btn btn-main">{{ i18n "read_more" }}</a> -->
-							</div>
+								</li>
+							</ul>
 						</div>
-						<div class="col-md-4">
-							<a href="{{ .Permalink }}">
-								<img src="{{ .Params.Image | relURL }}" alt="Image not found !" width="100%">
-							</a>
+						<div class="post-content">
+							<p>{{ .Params.Description }}</p>
+							<!-- <a href="{{ .Permalink }}" class="btn btn-main">{{ i18n "read_more" }}</a> -->
 						</div>
 					</div>
-				</a>
-
+					<div class="col-md-4">
+						<img src="{{ .Params.Image | relURL }}" alt="Image not found !" width="100%">
+					</div>
+				</div>
 				{{ end }}
 			</div>
 

@@ -25,7 +25,6 @@ Le Megabot est un robot quadrupède de grande envergure pouvant transporter un p
 ## Mission
 
 L'objectif de ce projet est dans un premier temps de revoir le contrôle du robot en améliorant son modèle cinématique, c'est à dire revoir l'ensemble des algorithmes effectuant la traduction d'un ordre de position en une commande d'élongation de vérins. Après cela, il s'agit d'implémenter un algorithme de marche afin que le robot puisse suivre un déplacement courbe. Enfin, afin de vérifier la validité des algorithmes implémentés indépendemment des contraintes réelles telles que la déformation de la structure sous son poids, il faudra modéliser le Megabot et l'intégrer au simulateur PyBullet.
-
 &nbsp;
 
 
@@ -117,12 +116,14 @@ Minimiser l'erreur quadratique revient alors effectivement à minimiser
     \boxed{\dfrac{1}{2} \Delta V_k^T (J^TJ) \Delta V_k - (J \overline{\Delta X_k})^T \Delta V_k}
 \end{equation*}
 </div>
+&nbsp;
 
 </details>
+&nbsp;
 
 <!-- Fin démo -->
 
-
+Cette façon de résoudre la cinématique inverse est un exemple d'application de la méthode des moindres carrés. La résolution de ce problème quadratique est réalisable à l'aide d'un solveur QP tel que \\(\verb|qpsolvers|\\) en Pyhton.
 
 ### Calcul de la jacobienne de la cinématique directe
 
@@ -130,13 +131,27 @@ Nous allons a présent élaborer la matrice jacobienne associée à la cinémati
 
 #### Cinématique directe dans le plan de la patte
 
-Il est nécessaire de formaliser notre modèle cinématique direct. Pour cela, nous allons calculer successivement les écarts de position des points \\(D\\), \\(E\\), \\(F\\), \\(G\\), \\(H\\), \\(I\\) et \\(J\\) représentés sur le schéma suivant en fonction des variations d'élongation \\(\Delta v_1\\) et \\(\Delta v_2\\) des vérins. Pour 2 points \\(A\\) et \\(B\\) d'éloignement constant, nous noterons la distance les séparant \\(d_{AB}\\).
+Pour déterminer la jacobienne associée à notre cinématique directe dans le plan de la patte, il est nécessaire de formaliser notre problème. Nous allons calculer successivement les écarts de position des points \\(D\\), \\(E\\), \\(F\\), \\(G\\), \\(H\\), \\(I\\) et \\(J\\) représentés sur le schéma suivant en fonction des variations d'élongation \\(\Delta v_1\\) et \\(\Delta v_2\\) des vérins.
 
 <center>
 <img src="/images/projects/megabot/schema_leg.webp" alt="Image not found !" width="80%"/>
 </center>
+&nbsp;
 
-Le graphe des dépendances des articulations de la patte est le suivant :
+<!-- Calcul de J2 -->
+
+<details class="details-demo">
+<summary class="summary-demo">
+
+<center>
+
+    Calcul des écarts
+    
+</center>
+
+</summary>
+
+Pour 2 points \\(A\\) et \\(B\\) d'éloignement constant, nous noterons la distance les séparant \\(d_{AB}\\). Le graphe des dépendances des articulations de la patte est le suivant :
 
 <center>
 <img src="/images/projects/megabot/dependances.webp" alt="Image not found !" width="60%"/>
@@ -366,18 +381,6 @@ Nous le dérivons par rapport à \\(x_{I}\\), \\(y_{I}\\), \\(x_{G}\\), \\(y_{G}
 
 <div>
 \begin{equation*}
-    \hspace{-0.5cm}
-    \nabla S_{3_{I, G, H, v_{2}}} = \begin{bmatrix}
-    2(x_{I} - x_{G}) & 2(y_{I} - y_{G}) & -2(x_{I} - x_{G}) & -2(y_{I} - y_{G}) & 0 & 0 & 0 \\
-    2(x_{I} - x_{H}) & 2(y_{I} - y_{H}) & 0 & 0 & -2(x_{I} - x_{H}) & -2(y_{I} - y_{H}) & -2v_{2} \\
-    \end{bmatrix}
-\end{equation*}
-</div>
-&nbsp;
-
-<div>
-\begin{equation*}
-    \text{On pose} \hspace{0.2cm} 
     \nabla S_{3_{I, G, H, v_{2}}} = \begin{bmatrix}
     M_{1} & -M_{2} & -M_{3} & -M_{4} 
     \end{bmatrix}
@@ -480,7 +483,25 @@ Enfin, du fait que \\(G\\), \\(I\\) et \\(J\\) sont alignés, on obtient l'écar
 </div>
 &nbsp;
 
-La matrice \\(M_J\\) ainsi construite est la jacobienne \\(J_2\\) associée à notre modèle cinématique direct dans le plan de la patte :
+</details>
+&nbsp;
+
+<!-- Fin du calcul de J2 -->
+
+Une fois les écarts successifs calculés, nous obtenons la matrice \\(M_J\\) telle que :
+
+<div>
+\begin{equation*}
+    \Delta J =
+    M_J \cdot
+    \begin{bmatrix}
+    \Delta v_{1}\\
+    \Delta v_{2} \end{bmatrix}
+\end{equation*}
+</div>
+&nbsp;
+
+On remarque alors que cette matrice est la jacobienne \\(J_2\\) associée à notre modèle cinématique direct dans le plan de la patte :
 
 <div>
 \begin{equation*}
@@ -735,7 +756,7 @@ A partir des matrices \\(A\\) et \\(B\\), il devient possible de construire \\(J
 
 #### Généralisation
 
-Nous avons à présent explicité \\(J_3\\), la jacobienne associée au modèle cinématique direct d'une patte du Megabot dans son référentiel. Afin de pouvoir appliquer un contrôle simultané sur l'ensemble des pattes, il est nécessaire de généraliser notre modèle cinématique à l'ensemble de notre robot.
+Nous avons explicité \\(J_3\\), la jacobienne associée au modèle cinématique direct d'une patte du Megabot dans son référentiel. Afin de pouvoir appliquer un contrôle simultané sur l'ensemble des pattes, il est nécessaire de généraliser notre modèle cinématique à l'ensemble de notre robot.
 
 <center>
 <img src="/images/projects/megabot/robot_ref.webp" alt="Image not found !" width="80%"/>
@@ -745,13 +766,11 @@ Nous avons à présent explicité \\(J_3\\), la jacobienne associée au modèle 
 Nous noterons à partir de maintenant \\(\Delta V\\) les variations d'élongation des 12 vérins et \\(\Delta X\\) les variations de position de l'extrémité des pattes dans le référentiel \\((\overrightarrow{x}, \overrightarrow{y}, \overrightarrow{z})\\) du robot. La nouvelle matrice de passage entre ces vecteurs sera nommée \\(J_{12}\\) :
 
 <div>
-\begin{equation*}
-    \boxed{
+\begin{equation*}    
     \Delta X = J_{12} \cdot \Delta V
-    }
-    \hspace{0.2cm}
+    \hspace{1cm}
     \text{avec}
-    \hspace{0.2cm}
+    \hspace{1cm}
     \Delta V =     
     \begin{bmatrix}
     \Delta v_1\\
@@ -767,9 +786,9 @@ Nous noterons à partir de maintenant \\(\Delta V\\) les variations d'élongatio
     \Delta v_{11}\\
     \Delta v_{12}
     \end{bmatrix}
-        \hspace{0.2cm}
-    \text{et}
     \hspace{0.2cm}
+    \text{et}
+    \hspace{0.4cm}
     \Delta X =     
     \begin{bmatrix}
     \Delta x_A\\
@@ -807,11 +826,137 @@ On peut alors remarquer qu'en utilisant des matrices de rotation il est facile d
 
 Les jacobiennes \\(J_2\\), \\(J_3\\) et \\(J_{12}\\) calculées permettent toutes d'élaborer des algorithmes de contrôle respectivement d'une patte dans son plan, d'une patte dans son référentiel et de l'ensemble des pattes dans le référentiel du Megabot en utilisant un solveur QP. Néanmoins, la problématique importante de gestion du centre de gravité peut également être traitée dès la phase de contrôle, c'est pourquoi nous allons l'intégrer à nos équations.
 
-########################################## A TRIER ####################################################
+### Gestion du centre de gravité
 
-En effet, une problématique importante que nous avons cherché à résoudre dès la phase de contrôle a été le maintien du projeté du centre de gravité du robot dans son polygone de sustentation, c'est à dire le polygone convexe formé par les points de contact entre le sol et le robot. Dans le cas où le centre de gravité du Megabot venait à ne plus être au dessus de cette zone, alors il basculerait, ce qui modifierait ses pattes au sol et fausserait toute planification de mouvement.
+En effet, une problématique importante que nous allons chercher à résoudre est le maintien du projeté du centre de gravité du robot dans son polygone de sustentation, c'est à dire le polygone convexe formé par les points de contact entre le sol et le robot. Dans le cas où le centre de gravité du Megabot viendrait à ne plus être au dessus de cette zone alors il basculerait, ce qui modifierait ses pattes au sol et fausserait toute planification de mouvement.
 
-Deux principaux modes de contrôle ont été implémentés, chacun ayant des avantages et inconvénients. La partie la plus complexe de ce travail de modélisation a été l'élaboration des jacobiennes associées à la cinématique du Megabot, dont le détail des calculs est explicité en annexe.
+Nous avons implémenté 2 modes de contrôle principaux, chacun ayant des avantages et inconvénients. Le premier ne fait que contraindre le centre de gravité au dessus du polygone de sustentation par l'ajout de contraintes dans le solveur QP. Le second quant à lui permet de fournir en entrée non pas seulement une trajectoire pour les pattes du robot, mais également pour son centre de gravité.
+
+Dans les 2 cas, il est nécessaire d'élaborer la jacobienne associée au déplacement du centre de gravité du Megabot. Connaissant le poids de chacune des pièces du Megabot, il est possible de déterminer les variations \\(\Delta C\\) du centre de gravité à partir de \\(\Delta V\\) et des jacobiennes du modèle cinématique direct. En effet la position du centre de gravité n'est qu'une combinaison linéaire des positions de chacune des articulations du robot. On obtient alord une relation du type :
+
+<div>
+\begin{equation*}
+    \boxed{
+    \Delta C = J_{C} \cdot \Delta V
+    }
+\end{equation*}
+</div>
+&nbsp;
+
+#### Contrainte du centre de gravité
+
+Une fois la jacobienne \\(J_C\\) explicitée, il devient possible d'utiliser les variables \\(G\\) et \\(h\\) du solveur QP afin de contraindre le centre de gravité. En posant \\(G = J_C\\) et en choisissant \\(h\\) en accord avec les contraintes à appliquer au centre de gravité, le solveur garantira alors :
+
+<div>
+\begin{equation*}
+    G \Delta V = \Delta C \hspace{0.2cm} \leq  \hspace{0.2cm} h
+\end{equation*}
+</div>
+&nbsp;
+
+Notons qu'ici chaques lignes de \\(G\\) et \\(h\\) correspondent à une contrainte sur une coordonnées de centre de gravité. Dans les faits, on souhaite contraindre le projeté du centre de gravité dans le polygone de sustentation, il faut donc construire \\(G\\) de sorte à ce que chacune de ses lignes soit une combinaison linéaire des lignes de \\(J_{C}\\), tandis que \\(h\\) contiendrait les valeurs de contrainte associées. Dans le cas où nous aurions besoin de \\(n\\) contraintes sur les coordonnées du centre de gravité pour le maintenir dans les polygone de sustentation, \\(G\\) et \\(h\\) seraient alors constitués de \\(n\\) lignes.
+
+Cette solution apporte une forme de sécurité tout en laissant au centre de gravité une certaine liberté. Elle semble adaptée à un robot possédant une zone de sustentation constante au cours de son déplacement car, le cas échéant, elle permet de contraindre le centre de gravité à cette zone et de ne plus avoir à s'en préoccuper durant la phase de planification. 
+
+Ce n'est malheureusement pas le cas du Megabot, c'est pourquoi nous avons opté pour la seconde solution qui offre un contrôle exact du centre de gravité mais qui en contrepartie nécessite sa prise en compte dans la planification.
+
+#### Contrôle du centre de gravité
+
+Afin de commander la position du centre de gravité, il est nécessaire de l'intégrer aux entrées du solveur QP. On obtient alors la relation suivante en reprenant les notations précédentes:
+
+<div>
+\begin{equation*}
+    \boxed{\Delta X' = J_{15:12} \cdot \Delta V
+    \hspace{0.5 cm}
+    \text{avec}
+    \hspace{0.5 cm}
+    \Delta X' =     
+    \begin{bmatrix}
+    \Delta X \\
+    \Delta C\\
+    \end{bmatrix}
+    \hspace{0.5 cm}
+    \text{et}
+    \hspace{0.5 cm}
+    J_{15:12} =    
+    \begin{bmatrix}
+    J_{12} & J_C 
+    \end{bmatrix}}
+\end{equation*}
+</div>
+&nbsp;
+
+La nouvelle jacobienne \\(J_{15:12}\\) ainsi construite permet bien de prendre en compte la position du centre de gravité dans notre cinématique directe, néanmoins la matrice \\(J_{15:12}\\) ne peut pas être exploitée telle quelle par le solveur QP car la matrice \\(J_{15:12}\hspace{0.15cm}^TJ_{15:12}\\) est singulière (cf. démonstration effectuée dans la présentation de la problématique). Une solution pour contourner la singularité de cette matrice, est d'ajouter une d'ajouter un terme de régularisation à notre minimisation.
+
+<!-- Régularisation -->
+
+<details class="details-demo">
+<summary class="summary-demo">
+
+<center>
+
+    Ajout d'un terme de régularisation
+    
+</center>
+
+</summary>
+
+de Tikhonov coefficient \\(r\\) à notre optimisation quadratique
+
+<div>
+\begin{equation*}
+    \begin{array}{cc}
+        \underset{\Delta V_{k+1}}{\textit{minimize}} & ||\overline{X'_{k+1}} - X'_{k+1}||^2 + r ||\Delta V_{k+1}||^2 
+    \end{array}
+\end{equation*}
+</div>
+&nbsp;
+
+On l'on note :
+
+<div>
+\begin{equation*}
+    \begin{array}{rcl}
+        \overline{X_k} & : & \text{position objectif à l'instant } k \\
+        X_k & : & \text{position réelle à l'instant } k \\
+        \overline{\Delta X_k} = \overline{X_{k+1}} - X_k & : & \text{variation de la position prévue à l'instant } k \\
+        \Delta X_k = X_{k+1} - X_k & : & \text{variation de la position réelle à l'instant } k \\
+        \Delta V_k & : & \text{variation de l'élongation des vérins correspondant à } \Delta X_k
+    \end{array}
+\end{equation*}
+</div>
+&nbsp;
+
+L'objectif à minimiser devient alors :
+
+<div>
+\begin{equation*}
+    \hspace{-0.5cm}
+    \begin{array}{rcl}
+         ||\overline{X_{k+1}} - X_{k+1}||^2 + r ||\Delta V_{k+1}||^2 & = & \Delta V_k^T (J_{15:12}\hspace{0.15cm}^TJ_{15:12} + r Id_{12})\Delta V_k - 2 \left( \overline{\Delta X_{k}}^T J_{15:12} \Delta V_k \right) + CST
+    \end{array}
+\end{equation*}
+</div>
+&nbsp;
+
+<div>
+\begin{equation*}
+    \Longrightarrow
+    \hspace{0.3cm}
+    \boxed{
+    \begin{array}{cc}
+        \underset{\Delta V_{k+1}}{\textit{minimize}} & V_k^T (J_{15:12}\hspace{0.15cm}^TJ_{15:12} + r Id_{12})\Delta V_k - 2 \left( \overline{\Delta X_{k}}^T J_{15:12} \Delta V_k \right)
+    \end{array}}
+\end{equation*}
+</div>
+&nbsp;
+
+Ainsi on transforme la matrice singulière $J_{15:12}\hspace{0.15cm}^TJ_{15:12}$ de notre précédente optimisation quadratique en la matrice $J_{15:12}\hspace{0.15cm}^TJ_{15:12} + r Id_{12}$. Cela permet d'en assurer la non-singularité, car il n'y a plus de dépendance entre les lignes de la matrice. Cette régularisation implique également l'homogénisation des variations de vérins, l'homogénisation étant d'autant plus forte que la valeur choisie pour $r$ est élevée.
+
+</details>
+
+<!-- Fin régularisation -->
+
 
 ### Commande sur la position des pattes
 
@@ -882,110 +1027,6 @@ Une fois l'URDF généré, les contraintes de fermetures géométriques ont ét�
 
 
 
-############################################## Fin ##################################################
-
-
-
-La comportement du Megabot dans le simulateur est proche de celui attendu, néanmoins il est possible de constater de légers écarts avec le résultat attendu. Cette différence s'explique de par une répartition de masse différente dans le modèle du robot de la partie algorithmique et dans celui simulé, en particulier au niveau des vérins qui sont considérés comme des segments de longueur variable au poids uniformément réparti dans l'algorithmique et comme deux pièces de poids fixes en translation dans la simulation. Une autre piste pouvant expliquer les écarts est également la prise en compte de la dynamique dans le simulateur, là où la cinématique du Megabot le considère comme statique dans l'algorithmique du fait de sa faible vitesse de déplacement.
-
-
-
-######################################## centre de gravité ###########################################
-
-\newpage
-
-\section{Centre de gravité et optimisation quadratique}
-
-La gestion du centre de gravité peut être réalisée de 2 façons durant la phase de contrôle :
-
-\begin{itemize}
-    \item En le contraignant via les variables $G$, $h$, $A$, $b$, $lb$ et $ub$ du solveur QP : les variations $\Delta C$ du centre de gravité sont calculées à partir de $\Delta V$ dans l'exemple de la partie \ref{CinInv}
-    \vspace{0.3cm}
-    
-    \item En ajoutant la position du centre de gravité aux entrée de la cinématique inverse : il est alors intégré à $\Delta X$ dans l'exemple de la partie \ref{CinInv}
-\end{itemize}
-\vspace{0.5cm}
-
-La première solution apporte une forme de sécurité tout en laissant au centre de gravité plus de liberté, elle semble adaptée à un robot possédant une zone de sustentation constante au cours de son déplacement car, le cas échéant, elle permet de contraindre le centre de gravité à cette zone et de ne plus avoir à s'en préoccuper durant la phase de planification. 
-
-Ce n'est malheureusement pas le cas du Megabot, c'est pourquoi nous avons opté pour la seconde solution qui offre un contrôle exact du centre de gravité mais nécessite sa prise en compte dans la planification.
-
-La première étape des 2 méthodes est de calculer la jacobienne du centre de gravité qui, une fois que le modèle cinématique direct a été établi, est assez simple à déterminer. En effet la position du centre de gravité n'est qu'une combinaison linéaire des positions de chacune des articulations du robot, de ce fait sa jacobienne est également une combinaison linéaire des jacobiennes associées à chaque articulation. Pour récupérer ces jacobiennes, il suffit de reprendre les matrices explicitées dans la partie \ref{CinPlan} et de leur appliquer les changements de référentiel des parties \ref{CinSpace} et \ref{CinGen}. Cela abouti à la relation suivante où $C$ est la position du centre de gravité et $J_{C}$ est la jacobienne obtenue :
-
-
-\begin{equation*}
-    \boxed{
-    \Delta C = J_{C} \cdot \Delta V
-    }
-\end{equation*}
-
-\newpage
-
-\subsection{Calcul à partir de $\Delta V$}
-
-Pour contraindre le centre de gravité, nous pouvons utiliser l'inégalité $G\Delta V \leq h$ du solveur QP. Chaque ligne de $G$ et $h$ correspond à une contrainte sur des coordonnées de centre de gravité. $G$ est constitué de combinaisons linéaires des lignes de $J_{C}$, tandis que $h$ contient les valeurs de contrainte. Dans le cas où l'on veut ajouter $n$ contraintes sur les coordonnées du centre de gravité, $G$ et $h$  sont alors constitués de $n$ lignes.
-
-\subsection{Intégration à $\Delta X$}
-
-Dans le cas où l'on souhaite commander la position du centre de gravité, on doit l'intégrer aux entrées du solveur QP. On obtient alors la relation suivante en reprenant les notations de la partie \ref{CinGen} :
-
-\begin{equation*}
-    \boxed{\Delta X' = J_{15:12} \cdot \Delta V}
-    \hspace{0.5 cm}
-    \text{avec}
-    \hspace{0.5 cm}
-    \boxed{\Delta X' =     
-    \begin{bmatrix}
-    \Delta X \\
-    \hline
-    \Delta C\\
-    \end{bmatrix}}
-    \hspace{0.5 cm}
-    \text{et}
-    \hspace{0.5 cm}
-    \boxed{J_{15:12} =    
-    \begin{bmatrix}
-    J_{12} & J_C 
-    \end{bmatrix}}
-\end{equation*}
-
-C'est cette seconde option qui a été choisie dans le cas du Megabot. Néanmoins la matrice $J_{15:12}$ ne peut pas être exploitée telle quelle par le solveur QP explicité dans la partie \ref{CinInv}, car la matrice $J_{15:12}\hspace{0.15cm}^TJ_{15:12}$ est singulière. Une solution pour contourner la singularité de cette matrice, est d'ajouter une régularisation de coefficient $r$ à notre optimisation quadratique :
-
-\begin{equation*}
-    \begin{array}{cc}
-        \underset{\Delta V_{k+1}}{\textit{minimize}} & ||\overline{X'_{k+1}} - X'_{k+1}||^2 + r ||\Delta V_{k+1}||^2 
-    \end{array}
-\end{equation*}
-
-On l'on note :
-\begin{equation*}
-    \begin{array}{rcl}
-        \overline{X_k} & : & \text{position objectif à l'instant } k \\
-        X_k & : & \text{position réelle à l'instant } k \\
-        \overline{\Delta X_k} = \overline{X_{k+1}} - X_k & : & \text{variation de la position prévue à l'instant } k \\
-        \Delta X_k = X_{k+1} - X_k & : & \text{variation de la position réelle à l'instant } k \\
-        \Delta V_k & : & \text{variation de l'élongation des vérins correspondant à } \Delta X_k
-    \end{array}
-\end{equation*}
-
-\newpage
-
-L'objectif à minimiser devient alors :
-\vspace{-1cm}
-
-\begin{equation*}
-    \hspace{-0.5cm}
-    \begin{array}{rcl}
-         ||\overline{X_{k+1}} - X_{k+1}||^2 + r ||\Delta V_{k+1}||^2 & = & \Delta V_k^T (J_{15:12}\hspace{0.15cm}^TJ_{15:12} + r Id_{12})\Delta V_k - 2 \left( \overline{\Delta X_{k}}^T J_{15:12} \Delta V_k \right) + CST
-    \end{array}
-\end{equation*}
-\begin{equation*}
-    \Longrightarrow
-    \hspace{0.3cm}
-    \boxed{
-    \begin{array}{cc}
-        \underset{\Delta V_{k+1}}{\textit{minimize}} & V_k^T (J_{15:12}\hspace{0.15cm}^TJ_{15:12} + r Id_{12})\Delta V_k - 2 \left( \overline{\Delta X_{k}}^T J_{15:12} \Delta V_k \right)
-    \end{array}}
-\end{equation*}
-
-\indent Ainsi on transforme la matrice singulière $J_{15:12}\hspace{0.15cm}^TJ_{15:12}$ de notre précédente optimisation quadratique en la matrice $J_{15:12}\hspace{0.15cm}^TJ_{15:12} + r Id_{12}$. Cela permet d'en assurer la non-singularité, car il n'y a plus de dépendance entre les lignes de la matrice. Cette régularisation implique également l'homogénisation des variations de vérins, l'homogénisation étant d'autant plus forte que la valeur choisie pour $r$ est élevée.
+<!-- 
+La comportement du Megabot dans le simulateur est proche de celui attendu, néanmoins il est possible de constater de légers écarts avec le résultat attendu. Cette différence s'explique de par une répartition de masse différente dans le modèle du robot de la partie algorithmique et dans celui simulé, en particulier au niveau des vérins qui sont considérés comme des segments de longueur variable au poids uniformément réparti dans l'algorithmique et comme deux pièces de poids fixes en translation dans la simulation. Une autre piste pouvant expliquer les écarts est également la prise en compte de la dynamique dans le simulateur, là où la cinématique du Megabot le considère comme statique dans l'algorithmique du fait de sa faible vitesse de déplacement. 
+-->

@@ -5,6 +5,7 @@ banner:
   bg_overlay : true
   title : "Project's name"
   content : "Project's description"
+  
   button:
     enable : true
     label : "Lire"
