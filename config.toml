@@ -1,4 +1,4 @@
-baseURL = "https://marcdcls.github.io/Website"
+baseURL = "https://marcdcls.github.io"
 disableLanguages = []
 disqusShortname = ""
 paginate = "4"
@@ -14,33 +14,33 @@ weight = 1
 
 # Sections en haut de page
 [[Languages.en.menu.main]]
-URL = "/"
+URL = "/Website"
 name = "Accueil"
 weight = 1
 [[Languages.en.menu.main]]
-URL = "projects"
+URL = "/Website/projects"
 name = "Projets"
 weight = 2
 [[Languages.en.menu.main]]
-URL = "maker"
+URL = "/Website/maker"
 name = "Maker"
 weight = 3
 [[Languages.en.menu.main]]
-URL = "about"
+URL = "/Website/about"
 name = "Qui suis-je ?"
 weight = 4
 
 # Sections en fin de page
 [[Languages.en.menu.footer]]
-URL = "projects"
+URL = "/Website/projects"
 name = "Projets"
 weight = 1
 [[Languages.en.menu.footer]]
-URL = "maker"
+URL = "/Website/maker"
 name = "Maker"
 weight = 2
 [[Languages.en.menu.footer]]
-URL = "about"
+URL = "/Website/about"
 name = "Qui suis-je ?"
 weight = 3
 
