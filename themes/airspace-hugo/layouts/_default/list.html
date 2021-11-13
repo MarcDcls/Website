@@ -2,36 +2,47 @@
 
 {{ partial "page-title.html" . }}
 
+<style>
+	.bottom-one {
+		margin-bottom: 1cm;
+	}
+</style>
+
+<style>
+	.bottom-minus {
+		margin-bottom: -0.8cm;
+	}
+</style>
+
 <div class="page-wrapper">
 	<div class="container">
 		<div class="row">
 			<div class="post">
 				{{ $paginator := .Paginate .Data.Pages }}
 				{{ range $paginator.Pages }}
-				<div class="cadre" onclick="location.href='{{ .Permalink }}'">
-					<div class="col-md-8">
-						<h3 class="post-title">{{ .Title }}</h3>
-						<div class="post-meta">
-							<ul>
-								<li><i class="ion-calendar"></i>
-									{{ $mymonths := index $.Site.Data.mois }}{{ .Date.Day }}
-									{{ index $mymonths (printf "%d" .Date.Month) }} {{ .Date.Year }}
-									<!-- {{ .PublishDate.Format "January 2, 2006" }} -->
-								</li>
-							</ul>
+				<div class="cadre-content">
+					<div class="cadre" onclick="location.href='{{ .Permalink }}'">
+						<div class="col-md-8">
+							<h3 class="post-title">{{ .Title }}</h3>
+							<div class="post-meta">
+								<ul>
+									<li><i class="ion-calendar"></i>
+										{{ $mymonths := index $.Site.Data.mois }}{{ .Date.Day }}
+										{{ index $mymonths (printf "%d" .Date.Month) }} {{ .Date.Year }}
+									</li>
+								</ul>
+							</div>
+							<div class="post-content">
+								<p>{{ .Params.Description }}</p>
+							</div>
 						</div>
-						<div class="post-content">
-							<p>{{ .Params.Description }}</p>
-							<!-- <a href="{{ .Permalink }}" class="btn btn-main">{{ i18n "read_more" }}</a> -->
+						<div class="col-md-4">
+							<img src="{{ .Params.Image | relURL }}" alt="Image not found !" width="100%">
 						</div>
-					</div>
-					<div class="col-md-4">
-						<img src="{{ .Params.Image | relURL }}" alt="Image not found !" width="100%">
 					</div>
 				</div>
 				{{ end }}
 			</div>
-
 			<!-- pagination -->
 			{{ $paginator := .Paginator }}
 			{{ $adjacent_links := 2 }}
@@ -92,8 +103,10 @@
 					</li>
 					{{ end }}
 				</ul>
+				<p class="bottom-minus"> </p>
 			</nav>
 			{{ end }}
+			<p class="bottom-one"> </p>
 		</div>
 	</div>
 </div>

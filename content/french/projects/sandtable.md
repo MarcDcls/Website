@@ -3,7 +3,7 @@ bg_image = "images/banners/banner_sandtable.webp"
 image = "images/projects/sandtable/SandTableNoBackground.png"
 title = "Sand Table"
 date = "2021-05-20"
-description = "Conception et construction d'une table basse contenant un dispositif caché permettant le tracé de figures dans un bac de sable à l'aide d'une bille en acier"
+description = "Ce projet a pour but la création d'une table basse dont la partie supérieure transparente laisse voir une fine couche de sable sur laquelle une bille trace des courbes géométriques. La conception et la construction du dispositif caché permettant l'entrainement de la bille en acier par un aimant est au centre du travail effectué."
 +++
 
 
