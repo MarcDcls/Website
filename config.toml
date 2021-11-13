@@ -14,33 +14,33 @@ weight = 1
 
 # Sections en haut de page
 [[Languages.en.menu.main]]
-URL = "/Website"
+URL = "/"
 name = "Accueil"
 weight = 1
 [[Languages.en.menu.main]]
-URL = "/Website/projects"
+URL = "projects"
 name = "Projets"
 weight = 2
 [[Languages.en.menu.main]]
-URL = "/Website/maker"
+URL = "maker"
 name = "Maker"
 weight = 3
 [[Languages.en.menu.main]]
-URL = "/Website/about"
+URL = "about"
 name = "Qui suis-je ?"
 weight = 4
 
 # Sections en fin de page
 [[Languages.en.menu.footer]]
-URL = "/Website/projects"
+URL = "projects"
 name = "Projets"
 weight = 1
 [[Languages.en.menu.footer]]
-URL = "/Website/maker"
+URL = "maker"
 name = "Maker"
 weight = 2
 [[Languages.en.menu.footer]]
-URL = "/Website/about"
+URL = "about"
 name = "Qui suis-je ?"
 weight = 3
 
