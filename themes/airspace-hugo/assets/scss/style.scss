@@ -111,3 +111,69 @@ body {
         font-size: 14px;
     }
 }
+
+// Sommaire article
+.no-left-margin {
+    margin-left: 0;
+}
+
+.no-right-margin {
+    margin-right: 0;
+}
+
+.a-big-left-margin {
+    margin-left: 330px;
+}
+
+.a-little-right-margin {
+    margin-right: 10vw;
+}
+
+.summary {
+    position: sticky;
+    top: 25px;
+    border: 1px solid #a2aeb4 ;
+    cursor: pointer;
+    overflow: hidden;
+    margin: 0em 1em 0em;
+    padding: 0;
+    width: 250px;
+}
+
+.summary-line {
+    position: sticky;
+    top: 10px;
+}
+
+.case {
+    border: 1px solid  #c9d4da  ;
+    cursor: pointer;
+    background-color:  #ebf6fd ;
+}
+
+.no-drop-shadow{
+    filter: none;
+}
+.part {
+    font-size: 1.4em;
+    padding: 7px 2px 7px 15px;
+}
+
+.section {
+    font-size: 1.25em;
+    padding: 7px 2px 7px 30px;
+}
+
+.subsection {
+    font-size: 1.1em;
+    padding: 7px 2px 7px 47px;
+}
+
+.subsubsection {
+    font-size: 1em;
+    padding: 7px 2px 7px 60px;
+}
+
+.width-70 {
+    width: 70vw;
+}

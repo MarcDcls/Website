@@ -1,0 +1,55 @@
+{{ define "main" }}
+
+{{ partial "page-title.html" . }}
+
+<section class="page-wrapper">
+	<div class="summary">
+		<div class="case">
+			<div class="part">
+				<div>
+					Partie
+				</div>
+			</div>
+		</div>
+		<div class="case">
+			<div class="section">
+				Section
+			</div>
+		</div>
+		<div class="case">
+			<div class="subsection">
+				Sous section
+			</div>
+		</div>
+		<div class="case">
+			<div class="subsubsection">
+				Sous sous section
+			</div>
+		</div>
+	</div>
+	<div class="container a-big-left-margin no-right-margin">
+		<div class="row">
+			<div class=>
+				<div class="post post-single">
+					<h2 class="post-title">{{ .Title }}</h2>
+					<div class="post-meta">
+						<ul>
+							<li><i class="ion-calendar"></i>
+								{{ $mymonths := index $.Site.Data.mois }}{{ .Date.Day }}
+								{{ index $mymonths (printf "%d" .Date.Month) }} {{ .Date.Year }}
+							</li>
+						</ul>
+					</div>
+					<div class="post-content post-excerpt">
+						{{ .Content }}
+					</div>
+					<div class="post-comments">
+						{{ template "_internal/disqus.html" . }}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+{{ end }}

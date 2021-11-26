@@ -8,12 +8,13 @@ description = "L'objectif de ce projet est la mise en place d'un algorithme de m
 +++
 
 
+<div id='intro'><a name='intro'></a></div>
 
 # Introduction
 
 ## Qu'est-ce que le Megabot ?
 
-Le Megabot est un robot quadrupède de grande envergure pouvant transporter un passager et dont la vocation première est d'être présenté lors d'évènements liés à la robotique. Il pèse plus ou moins 250 kg, mesure environ 2,50 m de largeur et est actionné via des vérins électriques. Sa conception ainsi que sa construction ont été réalisées par Julien Allali, maître de conférence à l'ENSEIRB-MATMECA, et il est actuellement conservé au Fablab de Bordeaux INP.
+Le Megabot est un robot quadrupède de grande envergure pouvant transporter un passager et dont la vocation première est d'être présenté lors d'évènements liés à la robotique. Il pèse plus ou moins 250 kg, mesure environ 2,50 m de largeur et est actionné via des vérins électriques. Sa conception ainsi que sa construction ont été réalisées par <a href="https://www.labri.fr/perso/allali/" target="_blank"> Julien Allali </a>, maître de conférence à l'ENSEIRB-MATMECA, et il est actuellement conservé au Fablab de Bordeaux INP.
 
 
 <center>
@@ -63,6 +64,8 @@ Une solution classique à ce problème est d'avoir recours à la matrice jacobie
 &nbsp;
 
 Ce problème, où \\(\Delta V\\) est le vecteur des variations des élongations des vérins à déterminer, \\(J\\) la jacobienne de la cinématique directe et \\(\Delta X\\) le vecteur des variations de position, minimise effectivement l'erreur quadratique sur \\(\Delta X\\) tout en permettant de contraindre \\(\Delta V\\) avec les variables \\(G\\), \\(h\\), \\(A\\), \\(b\\), \\(lb\\) et \\(ub\\). Ces variables de contraintes sont utiles pour contraindre les élongations de vérins à ses limites physiques par exemple.
+
+<a href="#intro"> Intro test </a>
 
 <!-- Démo -->
 
