@@ -35,7 +35,7 @@
 					<div class="post-meta">
 						<ul>
 							<li><i class="ion-calendar"></i>
-								{{ $mymonths := index $.Site.Data.mois }}{{ .Date.Day }}
+								{{ $mymonths := index $.Site.Data.fr.mois }}{{ .Date.Day }}
 								{{ index $mymonths (printf "%d" .Date.Month) }} {{ .Date.Year }}
 							</li>
 						</ul>

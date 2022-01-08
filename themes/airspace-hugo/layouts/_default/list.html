@@ -17,6 +17,7 @@
 <div class="page-wrapper">
 	<div class="container">
 		<div class="row">
+		<!-- {{ partial "carousel.html" (dict "context" . "items" "1" "height" "50" "unit" "px" "duration" "7000") }} -->
 			<div class="post">
 				{{ $paginator := .Paginate .Data.Pages }}
 				{{ range $paginator.Pages }}
@@ -27,7 +28,7 @@
 							<div class="post-meta">
 								<ul>
 									<li><i class="ion-calendar"></i>
-										{{ $mymonths := index $.Site.Data.mois }}{{ .Date.Day }}
+										{{ $mymonths := index $.Site.Data.fr.mois }}{{ .Date.Day }}
 										{{ index $mymonths (printf "%d" .Date.Month) }} {{ .Date.Year }}
 									</li>
 								</ul>
@@ -37,7 +38,7 @@
 							</div>
 						</div>
 						<div class="col-md-4">
-							<img src="{{ .Params.Image | relURL }}" alt="Image not found !" width="100%">
+							<img class="img-post" src="{{ .Params.Image | relURL }}" alt="Image not found !" width="100%">
 						</div>
 					</div>
 				</div>

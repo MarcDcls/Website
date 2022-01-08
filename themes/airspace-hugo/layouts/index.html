@@ -29,7 +29,8 @@
 <!-- banner -->
 {{ if $data.homepage.banner.enable }}
 {{ with $data.homepage.banner }}
-<section class="slider {{if .bg_overlay}}overly{{end}}" style="background-image: url('{{ .bg_image | absURL }}');">
+{{ partial "carousel.html" (dict "context" . "items" "1" "height" "50" "unit" "%" "duration" "7000") }}
+<!-- <section class="slider {{if .bg_overlay}}overly{{end}}" style="background-image: url('{{ .bg_image | absURL }}');">
   <div class="container">
     <div class="row">
       <div class="col-md-12">
@@ -45,7 +46,7 @@
       </div>
     </div>
   </div>
-</section>
+</section> -->
 {{ end }}
 {{ end }}
 <!-- /banner -->

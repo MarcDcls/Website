@@ -5,41 +5,42 @@ paginate = "4"
 summaryLength = "30"
 theme = "airspace-hugo"
 title = "Site de Marc Duclusaud"
-[Languages.en]
-contentDir = "content/french"
-copyright = "Copyright &copy; 2020 [Themefisher](https://themefisher.com) All Rights Reserved"
-languageCode = "en-Us"
+defaultContentLanguage = "fr"
+languageCode = "fr-fr"
 languageName = "Fr"
+contentDir = "content/french"
+[Languages.fr]
+copyright = "Copyright &copy; 2020 [Themefisher](https://themefisher.com) All Rights Reserved"
 weight = 1
 
 # Sections en haut de page
-[[Languages.en.menu.main]]
+[[Languages.fr.menu.main]]
 URL = "/"
 name = "Accueil"
 weight = 1
-[[Languages.en.menu.main]]
+[[Languages.fr.menu.main]]
 URL = "projects"
 name = "Projets"
 weight = 2
-[[Languages.en.menu.main]]
+[[Languages.fr.menu.main]]
 URL = "maker"
 name = "Maker"
 weight = 3
-[[Languages.en.menu.main]]
+[[Languages.fr.menu.main]]
 URL = "about"
 name = "Qui suis-je ?"
 weight = 4
 
 # Sections en fin de page
-[[Languages.en.menu.footer]]
+[[Languages.fr.menu.footer]]
 URL = "projects"
 name = "Projets"
 weight = 1
-[[Languages.en.menu.footer]]
+[[Languages.fr.menu.footer]]
 URL = "maker"
 name = "Maker"
 weight = 2
-[[Languages.en.menu.footer]]
+[[Languages.fr.menu.footer]]
 URL = "about"
 name = "Qui suis-je ?"
 weight = 3

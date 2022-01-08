@@ -5,6 +5,8 @@ title = "Megabot"
 date = "2021-10-17"
 description = "L'objectif de ce projet est la mise en place d'un algorithme de marche courbe sur un robot quadrupède à vérins électriques de grande envergure : le Megabot. Il se découpe en 3 parties majeures que sont l'élaboration du contrôle du robot par sa modélisation cinématique, la planification de sa marche et sa simulation sur PyBullet."
 
+link = "projects/megabot/"
+
 +++
 
 

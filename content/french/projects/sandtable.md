@@ -4,6 +4,9 @@ image = "images/projects/sandtable/SandTableNoBackground.png"
 title = "Sand Table"
 date = "2021-05-20"
 description = "Ce projet a pour but la création d'une table basse dont la partie supérieure transparente laisse voir une fine couche de sable sur laquelle une bille trace des courbes géométriques. La conception et la construction du dispositif caché permettant l'entrainement de la bille en acier par un aimant est au centre du travail effectué."
+
+link = "projects/sandtable/"
+
 +++
 
 <!-- Lien vers une vidéo de la table finale : https://drive.google.com/file/d/1f2rt9aPrNuJFtPfoBBeAOd0koTvqRyuu/view?usp=sharing
@@ -32,6 +35,26 @@ Le centre du travail à fournir est donc d'une part la conception du dispositif 
 
 
 # Conception du mécanisme
+
+Le bac à sable de la table doit recouvrir la majorité de sa surface et la bille doit pouvoir en atteindre tout point. Pour ces 2 raisons, ainsi que par choix esthétique, une forme circulaire a été adoptée pour la table basse et le système d'entrainement a été conçu à l'aide d'une tige filetée en rotation autour du centre de la table permettant la translation de l'aimant le long de son rayon. Une première version de ce mécanisme impliquait 2 moteurs M1 et M2 (nécessaires au 2 degrés de liberté souhaités) placés conformément au schéma suivant, où A représente l'aimant et R une roue libre.
+
+<center>
+<img src="/images/projects/sandtable/schema_axe.webp" alt="Image not found !" width="80%"/>
+</center>
+&nbsp;
+
+Cette première idée comportait néanmoins un problème majeur : la non gestion de l'entortillement des fils nécessaires à l'alimentation et au contrôle de M2. Plusieurs solutions permettent de palier à ce problème, mais celle retenue à été le déplacement des actionneurs à l'aide de systèmes de transmission constitués d'engrenages coniques pour M2 et d'un système pignon/courroie pour M1.
+
+
+
+
+
+
+
+
+
+
+
 
 
 Le problème majeur dans ce projet est le déplacement de la bille. Nous avons opté pour un mode de guidée polaire. Le schéma ci dessous illustre ce fonctionnement :
