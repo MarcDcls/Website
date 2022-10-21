@@ -1,4 +1,4 @@
-This repository use Hugo to build my personal website.
+This repository use Hugo to build my personal website. The website is build in a submodule containing the repository MarcDcls\marcdcls.github.io.
 
 &nbsp;
 
