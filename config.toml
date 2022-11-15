@@ -23,13 +23,9 @@ URL = "projects"
 name = "Projets"
 weight = 2
 [[Languages.fr.menu.main]]
-URL = "maker"
-name = "Maker"
-weight = 3
-[[Languages.fr.menu.main]]
 URL = "about"
 name = "Qui suis-je ?"
-weight = 4
+weight = 3
 
 # Sections en fin de page
 [[Languages.fr.menu.footer]]
@@ -37,13 +33,9 @@ URL = "projects"
 name = "Projets"
 weight = 1
 [[Languages.fr.menu.footer]]
-URL = "maker"
-name = "Maker"
-weight = 2
-[[Languages.fr.menu.footer]]
 URL = "about"
 name = "Qui suis-je ?"
-weight = 3
+weight = 2
 
 [markup.goldmark.renderer]
 unsafe = true

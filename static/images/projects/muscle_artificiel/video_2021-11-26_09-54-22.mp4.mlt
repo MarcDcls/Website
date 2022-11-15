@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mlt LC_NUMERIC="C" version="7.4.0" root="/home/marc" title="video_2021-11-26_09-54-22.mp4">
+  <profile description="720x1280 29.54fps" width="720" height="1280" progressive="1" sample_aspect_num="1" sample_aspect_den="1" display_aspect_num="9" display_aspect_den="16" frame_rate_num="6588000" frame_rate_den="223013" colorspace="709"/>
+  <producer id="producer0" in="0" out="365">
+    <property name="length">366</property>
+    <property name="eof">pause</property>
+    <property name="resource">Documents/Website/static/images/projects/muscle_artificiel/video_2021-11-26_09-54-22.mp4</property>
+    <property name="meta.media.nb_streams">2</property>
+    <property name="meta.media.0.stream.type">audio</property>
+    <property name="meta.media.0.codec.sample_fmt">fltp</property>
+    <property name="meta.media.0.codec.sample_rate">48000</property>
+    <property name="meta.media.0.codec.channels">2</property>
+    <property name="meta.media.0.codec.name">aac</property>
+    <property name="meta.media.0.codec.long_name">AAC (Advanced Audio Coding)</property>
+    <property name="meta.media.0.codec.bit_rate">128032</property>
+    <property name="meta.attr.0.stream.creation_time.markup">2021-11-15T14:18:49.000000Z</property>
+    <property name="meta.attr.0.stream.language.markup">eng</property>
+    <property name="meta.attr.0.stream.handler_name.markup">SoundHandle</property>
+    <property name="meta.attr.0.stream.vendor_id.markup">[0][0][0][0]</property>
+    <property name="meta.media.1.stream.type">video</property>
+    <property name="meta.media.1.stream.frame_rate">29.5409</property>
+    <property name="meta.media.1.stream.sample_aspect_ratio">0</property>
+    <property name="meta.media.1.codec.width">720</property>
+    <property name="meta.media.1.codec.height">1280</property>
+    <property name="meta.media.1.codec.rotate">0</property>
+    <property name="meta.media.1.codec.pix_fmt">yuv420p</property>
+    <property name="meta.media.1.codec.sample_aspect_ratio">0</property>
+    <property name="meta.media.1.codec.colorspace">709</property>
+    <property name="meta.media.1.codec.name">h264</property>
+    <property name="meta.media.1.codec.long_name">H.264 / AVC / MPEG-4 AVC / MPEG-4 part 10</property>
+    <property name="meta.media.1.codec.bit_rate">3183836</property>
+    <property name="meta.attr.1.stream.creation_time.markup">2021-11-15T14:18:49.000000Z</property>
+    <property name="meta.attr.1.stream.language.markup">eng</property>
+    <property name="meta.attr.1.stream.handler_name.markup">VideoHandle</property>
+    <property name="meta.attr.1.stream.vendor_id.markup">[0][0][0][0]</property>
+    <property name="meta.attr.major_brand.markup">isom</property>
+    <property name="meta.attr.minor_version.markup">512</property>
+    <property name="meta.attr.compatible_brands.markup">isomiso2avc1mp41</property>
+    <property name="meta.attr.creation_time.markup">2021-11-15T14:19:05.000000Z</property>
+    <property name="seekable">1</property>
+    <property name="meta.media.sample_aspect_num">1</property>
+    <property name="meta.media.sample_aspect_den">1</property>
+    <property name="aspect_ratio">1</property>
+    <property name="audio_index">0</property>
+    <property name="video_index">1</property>
+    <property name="mute_on_pause">1</property>
+    <property name="mlt_service">avformat</property>
+    <property name="meta.media.frame_rate_num">6588000</property>
+    <property name="meta.media.frame_rate_den">223013</property>
+    <property name="meta.media.colorspace">709</property>
+    <property name="meta.media.color_trc">2</property>
+    <property name="meta.media.has_b_frames">0</property>
+    <property name="meta.media.width">720</property>
+    <property name="meta.media.height">1280</property>
+    <property name="meta.media.color_range">mpeg</property>
+    <property name="meta.media.top_field_first">0</property>
+    <property name="meta.media.progressive">1</property>
+    <filter id="filter0">
+      <property name="filename">Documents/Website/static/images/projects/muscle_artificiel/video_2021-11-26_09-54-22.mp4.mlt.trf</property>
+      <property name="shakiness">4</property>
+      <property name="accuracy">8</property>
+      <property name="stepsize">6</property>
+      <property name="algo">1</property>
+      <property name="mincontrast">0.3</property>
+      <property name="show">0</property>
+      <property name="tripod">0</property>
+      <property name="smoothing">10</property>
+      <property name="maxshift">-1</property>
+      <property name="maxangle">-1</property>
+      <property name="crop">0</property>
+      <property name="invert">0</property>
+      <property name="relative">1</property>
+      <property name="zoom">0</property>
+      <property name="optzoom">1</property>
+      <property name="zoomspeed">0.25</property>
+      <property name="reload">0</property>
+      <property name="vid.stab.version">v1.1 (2015-05-16)</property>
+      <property name="mlt_service">vidstab</property>
+      <property name="analyse">0</property>
+      <property name="sharpen">0.8</property>
+      <property name="results">Documents/Website/static/images/projects/muscle_artificiel/video_2021-11-26_09-54-22.mp4.mlt.trf</property>
+    </filter>
+  </producer>
+  <playlist id="playlist0">
+    <entry producer="producer0" in="0" out="365"/>
+  </playlist>
+  <tractor id="tractor0" title="video_2021-11-26_09-54-22.mp4" in="0" out="365">
+    <track producer="playlist0"/>
+  </tractor>
+</mlt>

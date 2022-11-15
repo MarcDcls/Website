@@ -43,7 +43,7 @@ Le bac à sable de la table doit recouvrir la majorité de sa surface et la bill
 </center>
 &nbsp;
 
-Cette première idée comportait néanmoins un problème majeur : la non gestion de l'entortillement des fils nécessaires à l'alimentation et au contrôle de M2. Plusieurs solutions permettent de palier à ce problème, mais celle retenue à été le déplacement des actionneurs à l'aide de systèmes de transmission constitués d'engrenages coniques pour M2 et d'un système pignon/courroie pour M1.
+Cette première idée comportait néanmoins un problème majeur : la non gestion de l'entortillement des fils nécessaires à l'alimentation et au contrôle de M2. Plusieurs solutions permettent de palier ce problème, mais celle retenue à été le déplacement des actionneurs à l'aide de systèmes de transmission constitués d'engrenages coniques pour M2 et d'un système pignon/courroie pour M1.
 
 
 
