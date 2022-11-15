@@ -1,4 +1,6 @@
-This repository use Hugo to build my personal website.
+This repository use Hugo to build my personal website. 
+
+The website is built in a submodule containing the repository MarcDcls\marcdcls.github.io.
 
 &nbsp;
 
@@ -10,4 +12,4 @@ Note to myself : to deploy after updating the site use
 
 &nbsp;
 
-To follow the whole process : https://www.youtube.com/watch?v=LIFvgrRxdt4
+To build your website the same way: https://www.youtube.com/watch?v=LIFvgrRxdt4
