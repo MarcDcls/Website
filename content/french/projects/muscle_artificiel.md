@@ -1,12 +1,21 @@
 +++
 bg_image = "images/banners/common_banner.webp"
 image = "images/projects/muscle_artificiel/dymaxion.webp"
-title = "Dymaxion Globe"
+title = "Muscles artificiels pneumatiques"
 date = "2021-09-20"
-description = "Le Dymaxion globe est un objet décoratif représentant le globe terrestre en accord avec la projection icosaèdrique de Fuller. Outre son aspect esthétique, il offre une représentation plus juste en terme de proportions des différents continents et océans."
+description = "Les muscles artificiels pneumatiques, aussi appelés muscles de McKibben, sont des actionneurs ayant été inventés dans les années 1950. Il s'agit de dispositifs se contractant de manière analogue à des muscles biologiques lorsqu'activés par de l'air comprimé."
 +++
 
-# Projections de Fuller
+# Principe
+
+Les muscles artificiels pneumatiques, également appelés muscles de McKibben, sont des actionneurs comparables à des muscles biologiques dont le principe a été proposé dans les années 50 par Joseph McKibben. Ils sont capables de contraction, c'est-à-dire que lorsqu'ils sont activés ils passent d'une élongation initiale au repos à une élongation plus réduite. 
+
+Les 2 composants principaux de ces muscles sont d'une part une chambre à air dont on peut faire varier le volume et d'une autre une gaine en fibres tressés dont on peut faire varier le diamètre. En disposant la chambre à air dans le tressage, son gonflement induit un élargissement du diamètre du tressage et un rapprochement de ses deux extrémités : une contraction ! 
+
+Ce type d'actionneur est utilisables dans 
+
+
+(PAM - Pneumaticde
 
 Les <a href="https://fr.wikipedia.org/wiki/Projection_de_Fuller" target="_blank"> projections de Fuller </a> projections de Fuller sont des projections cartographiques de la carte de la Terre sur la surface de polygones réguliers. Appliquées en 1946 sur un cuboctaèdre et en 1954 sur un icosaèdre, ces projections sont nommées *Dymaxion map* , pour ***dy****namic* ***max****imim tens****ion***, et ont pour avantage de limiter les déformations cartographiques présentes sur les projections classiques comme celles de <a href="https://fr.wikipedia.org/wiki/Projection_de_Mercator" target="_blank"> Mercator </a> ou de <a href="https://fr.wikipedia.org/wiki/Projection_de_Peters" target="_blank"> Peters </a> par exemple.
 
