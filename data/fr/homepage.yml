@@ -1,28 +1,28 @@
 ############################### Banner ##############################
-banner:
-  enable : true
-  bg_image : "images/banners/common_banner.webp"
-  bg_overlay : true
-  title : "Nom du projet"
-  content : "Description du projet"
+# banner:
+#   enable : true
+#   bg_image : "images/banners/common_banner.webp"
+#   bg_overlay : true
+#   title : "Nom du projet"
+#   content : "Description du projet"
   
-  button:
-    enable : true
-    label : "Lire"
-    link : ""
+#   button:
+#     enable : true
+#     label : "Lire"
+#     link : ""
 
 ############################# About #################################
-about:
-  enable : true
-  # title : "Présentation du site"
-  content : "L'objectif de ce site est de partager le travail que j'ai pu effectuer sur différents projets technologiques.
+# about:
+#   enable : true
+#   # title : "Présentation du site"
+#   content : "L'objectif de ce site est de partager le travail que j'ai pu effectuer sur différents projets technologiques.
 
 
-  Vous pouvez trouver dans l'onglet projets l'ensemble des travaux les plus conséquents auxquels j'ai pu participer. Les articles qui y sont dédiés peuvent
-  aussi bien traiter de leur conception mécanique ou de leur réalisation concrète que des algorithmes, programmes et mathématiques qu'ils utilisent. L'idée 
-  derrière un article est avant tout de rendre compte le plus clairement possible des solutions apportées à chaque problème rencontré et d'expliquer 
-  comment chaque projet à pu être réalisé de bout en bout.
+#   Vous pouvez trouver dans l'onglet projets l'ensemble des travaux les plus conséquents auxquels j'ai pu participer. Les articles qui y sont dédiés peuvent
+#   aussi bien traiter de leur conception mécanique ou de leur réalisation concrète que des algorithmes, programmes et mathématiques qu'ils utilisent. L'idée 
+#   derrière un article est avant tout de rendre compte le plus clairement possible des solutions apportées à chaque problème rencontré et d'expliquer 
+#   comment chaque projet à pu être réalisé de bout en bout.
 
   
-  Dans la partie maker vous trouverez des projets moins ambitieux mais valant néanmoins la peine d'être partagés. Il s'agit pour la plupart 
-  de réalisations que j'ai pu effectuer au Fablab de Bordeaux INP et que j'ai trouvé intéressantes ou esthétiques."
+#   Dans la partie maker vous trouverez des projets moins ambitieux mais valant néanmoins la peine d'être partagés. Il s'agit pour la plupart 
+#   de réalisations que j'ai pu effectuer au Fablab de Bordeaux INP et que j'ai trouvé intéressantes ou esthétiques."

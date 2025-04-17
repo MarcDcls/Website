@@ -1,0 +1,63 @@
+
+############################# About #################################
+about:
+  enable : true
+  title : "Marc Duclusaud"
+  image : "images/misc/photo_marc_circle.webp"
+  
+  content : "Currently a robotics engineering student at <a href='https://enseirb-matmeca.bordeaux-inp.fr/fr' 
+  target='_blank'>ENSEIRB-MATMECA</a> in Bordeaux, I am passionate about robotics, particularly its applications 
+  in the field of prosthetics. This passion, combined with my eagerness to learn more about the subject, 
+  is what drives me to pursue a PhD in this field. Before specializing, I followed a curriculum focused 
+  on computer science, which allowed me to develop strong skills in this area—skills that I believe will 
+  be valuable for my future research.
+
+  In parallel with my studies, I am also a FabManager at the <a href='https://www.eirlab.net/' 
+  target='_blank'>Bordeaux INP Fablab</a>, where I have the opportunity to work on a wide range 
+  of technological projects. This experience allows me to develop skills in various fields, such 
+  as mechanics, electronics, and mathematics. It has also given me hands-on experience with numerous 
+  tools and machines, including 3D printers, laser cutters, and CNC machines.
+
+  If you would like to discuss any of the projects featured on this site, feel free to contact me. 
+  I am available for any additional information. Furthermore, if my profile interests you and you 
+  work in the field of robotics or prosthetics, I also invite you to reach out. My CV is available here:"
+  
+  button:
+    enable : true
+    label : "CV"
+    link : "/pdf/CV_Marc_Duclusaud.pdf"
+
+################################ Bandeau noir #####################################
+# features:
+#   enable : true
+#   title : "Nos partenariats"
+#   feature_item:
+#     # feature item loop
+#     - icon : "ion-social-euro" #ionicon pack v2 : https://ionicons.com/v2/
+#       name : "Dons financiers"
+#       content : "Texte"
+      
+#     # feature item loop
+#     - icon : "ion-wrench" #ionicon pack v2 : https://ionicons.com/v2/
+#       name : "Dons matériel"
+#       content : "Texte"
+      
+#     # feature item loop
+#     - icon : "ion-information" #ionicon pack v2 : https://ionicons.com/v2/
+#       name : "Formations"
+#       content : "Texte"
+      
+#     # feature item loop
+#     - icon : "ion-happy" #ionicon pack v2 : https://ionicons.com/v2/
+#       name : "Organisation d'évènements"
+#       content : "Texte"
+      
+#     # feature item loop
+#     - icon : "ion-speakerphone" #ionicon pack v2 : https://ionicons.com/v2/
+#       name : "Communication"
+#       content : "Texte"
+      
+#     # feature item loop
+#     - icon : "ion-university" #ionicon pack v2 : https://ionicons.com/v2/
+#       name : "Recrutement"
+#       content : "Texte"

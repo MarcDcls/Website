@@ -67,8 +67,6 @@ Une solution classique à ce problème est d'avoir recours à la matrice jacobie
 
 Ce problème, où \\(\Delta V\\) est le vecteur des variations des élongations des vérins à déterminer, \\(J\\) la jacobienne de la cinématique directe et \\(\Delta X\\) le vecteur des variations de position, minimise effectivement l'erreur quadratique sur \\(\Delta X\\) tout en permettant de contraindre \\(\Delta V\\) avec les variables \\(G\\), \\(h\\), \\(A\\), \\(b\\), \\(lb\\) et \\(ub\\). Ces variables de contraintes sont utiles pour contraindre les élongations de vérins à ses limites physiques par exemple.
 
-<a href="#intro"> Intro test </a>
-
 <!-- Démo -->
 
 <details class="details-demo">

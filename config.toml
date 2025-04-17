@@ -4,28 +4,54 @@ disqusShortname = ""
 paginate = "4"
 summaryLength = "30"
 theme = "airspace-hugo"
-title = "Site de Marc Duclusaud"
-defaultContentLanguage = "fr"
-languageCode = "fr-fr"
-languageName = "Fr"
-contentDir = "content/french"
-[Languages.fr]
-copyright = "Copyright &copy; 2020 [Themefisher](https://themefisher.com) All Rights Reserved"
+
+################################ English Language ########################
+[Languages.en]
+languageName = "En"
+languageCode = "en-us"
+contentDir = "content/english"
+title = "Marc Duclusaud's website"
 weight = 1
 
-# Sections en haut de page
-[[Languages.fr.menu.main]]
-URL = "/"
-name = "Accueil"
+######################### English Navigation #############################
+# Header menu
+[[Languages.en.menu.main]]
+URL = "projects"
+name = "Projects"
 weight = 1
+[[Languages.en.menu.main]]
+URL = "about"
+name = "About"
+weight = 2
+
+# Footer menu
+[[Languages.en.menu.footer]]
+URL = "projects"
+name = "Projects"
+weight = 1
+[[Languages.en.menu.footer]]
+URL = "about"
+name = "About"
+weight = 2
+
+################################ French Language #########################
+[Languages.fr]
+languageName = "Fr"
+languageCode = "fr-fr"
+contentDir = "content/french"
+title = "Site de Marc Duclusaud"
+weight = 2
+
+######################### French Navigation ##############################
+# Sections en haut de page
 [[Languages.fr.menu.main]]
 URL = "projects"
 name = "Projets"
-weight = 2
+weight = 1
 [[Languages.fr.menu.main]]
 URL = "about"
 name = "Qui suis-je ?"
-weight = 3
+weight = 2
 
 # Sections en fin de page
 [[Languages.fr.menu.footer]]
@@ -37,14 +63,17 @@ URL = "about"
 name = "Qui suis-je ?"
 weight = 2
 
+
+
 [markup.goldmark.renderer]
 unsafe = true
 [outputs]
 home = ["HTML"]
 [params]
+mainSections = ["projects"]
 author = "Marc Duclusaud"
 description = ""
-email = "marc_dcls@outlook.fr"
+email = "marc.duclusaud@gmail.com"
 google_analitycs_id = ""
 location = ""
 logo = "" # "images/misc/M_logo.webp"

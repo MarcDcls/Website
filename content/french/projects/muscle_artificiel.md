@@ -1,10 +1,16 @@
 +++
 bg_image = "images/banners/common_banner.webp"
-image = "images/projects/muscle_artificiel/dymaxion.webp"
+image = "images/projects/muscle_artificiel/artificial_muscle.gif"
 title = "Muscles artificiels pneumatiques"
 date = "2021-09-20"
 description = "Les muscles artificiels pneumatiques, aussi appelés muscles de McKibben, sont des actionneurs ayant été inventés dans les années 1950. Il s'agit de dispositifs se contractant de manière analogue à des muscles biologiques lorsqu'activés par de l'air comprimé."
 +++
+
+<center>
+<img src="/images/projects/muscle_artificiel/artificial_muscle.gif" width="80%"/>
+</center>
+
+&nbsp;
 
 # Principe
 
@@ -12,70 +18,30 @@ Les muscles artificiels pneumatiques, également appelés muscles de McKibben, s
 
 Les 2 composants principaux de ces muscles sont d'une part une chambre à air dont on peut faire varier le volume et d'une autre une gaine en fibres tressés dont on peut faire varier le diamètre. En disposant la chambre à air dans le tressage, son gonflement induit un élargissement du diamètre du tressage et un rapprochement de ses deux extrémités : une contraction ! 
 
-Ce type d'actionneur est utilisables dans 
+Ce type d'actionneur est utilisables dans de nombreux domaines, notamment en robotique, en prothèses ou encore en exosquelettes. Ils sont appréciés pour leur légèreté, leur faible coût et leur capacité à générer des forces importantes.
 
 
-(PAM - Pneumaticde
-
-Les <a href="https://fr.wikipedia.org/wiki/Projection_de_Fuller" target="_blank"> projections de Fuller </a> projections de Fuller sont des projections cartographiques de la carte de la Terre sur la surface de polygones réguliers. Appliquées en 1946 sur un cuboctaèdre et en 1954 sur un icosaèdre, ces projections sont nommées *Dymaxion map* , pour ***dy****namic* ***max****imim tens****ion***, et ont pour avantage de limiter les déformations cartographiques présentes sur les projections classiques comme celles de <a href="https://fr.wikipedia.org/wiki/Projection_de_Mercator" target="_blank"> Mercator </a> ou de <a href="https://fr.wikipedia.org/wiki/Projection_de_Peters" target="_blank"> Peters </a> par exemple.
-
-Celle utilisée pour le Dymaxion globe est une projection icosaèdrique, c'est à dire sur un polygone régulier composée de 20 triangles équilatéraux. Il s'agit de la forme utilisée pour les dés à 20 faces. Il est bon de noter que les projections de Fuller ne sont pas uniques.
-&nbsp;
-
-<center>
-<img src="/images/projects/dymaxion_globe/projection_fuller.webp" alt="Image not found !" width="80%"/>
-</center>
-&nbsp;
 
 # Réalisation
 
-L'idée ainsi que le tracé original proviennent d'un projet hébergé sur Thingiverse que je vous invite à consulter <a href="https://www.thingiverse.com/thing:1871829" target="_blank"> ici </a>. Après remaniement du tracé vectoriel, nous aboutissons à l'image suivante, prête à être découpée à la laser cut.
-
-
-<center>
-<img src="/images/projects/dymaxion_globe/decoupe.webp" alt="Image not found !" width="80%"/>
-</center>
-&nbsp;
-
-
-Après découpe, 2 versions ont été assemblées. Une version de taille réduite d'environ 15 cm de diamètre,sans méridiens ni parallèles, et une seconde plus grande d'environ 25 cm de diamètre avec méridiens et parallèles.
-
-&nbsp;
+Pour réaliser un muscle artificiel pneumatique, il est nécessaire de disposer d'une chambre à air, d'une gaine en fibres tressées, d'un raccord pneumatique et d'une source d'air comprimé. Pour ce projet, j'ai utilisé un tube en silicone en tant que chambre à air. L'ensemble du matériel est présenté ci-dessous.
 
 <center>
-<h2> Version réduite </h2>
-</center>
-&nbsp;
-
-<center>
-<img src="/images/projects/dymaxion_globe/little_dymaxion_1.webp" alt="Image not found !" height="300em"/>
-<img src="/images/projects/dymaxion_globe/little_dymaxion_2.webp" alt="Image not found !" height="300em"/>
-</center>
-&nbsp;
-
-<center>
-<a href="/pdf/dymaxion/dymaxion_3mm.pdf" class="btn btn-small mt-20" download> Télécharger le fichier (découpe pour 3mm) </a>
+<img src="/images/projects/muscle_artificiel/material.jpg" alt="Image not found !" width="80%"/>
 </center>
 
 &nbsp;
 
-&nbsp;
+La première étape à été la construction de la chambre à air. Pour cela, j'ai monté une entrée d'air sur une des extrémités du tube en silicone et j'ai scellé l'autre extrémité. Le montage obtenu est présenté ci-dessous.
 
 <center>
-<h2> Grande version </h2>
+<img src="/images/projects/muscle_artificiel/assembly_1.jpg" alt="Image not found !" width="80%"/>
 </center>
+
 &nbsp;
 
-<center>
-<img src="/images/projects/dymaxion_globe/dymaxion.webp" alt="Image not found !" width="80%"/>
-</center>
-&nbsp;
+J'ai ensuite ajouté la gaine en fibre tressée autour de la chambre à air, en fixant ses extrémités à l'aide de colliers de serrage. Le muscle artificiel pneumatique est alors prêt à être utilisé :
 
 <center>
-<img src="/images/projects/dymaxion_globe/dymaxion_with_eirlab.webp" alt="Image not found !" width="80%"/>
-</center>
-&nbsp;
-
-<center>
-<a href="/pdf/dymaxion/dymaxion_5mm.pdf" class="btn btn-small mt-20" download> Télécharger le fichier (découpe pour 5mm) </a>
+<img src="/images/projects/muscle_artificiel/assembly_2.jpg" alt="Image not found !" width="80%"/>
 </center>

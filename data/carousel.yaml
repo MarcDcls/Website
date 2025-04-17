@@ -1,9 +1,0 @@
-images: 
-  - image: /images/banners/banner_dymaxion_globe.webp
-    content_html: "1"
-  - image: /images/banners/banner_megabot.webp
-    content_html: "2"
-  - image: /images/banners/banner_sandtable.webp
-    content_html: "3"
-  - image: /images/banners/common_banner.webp
-    content_html: "4"
