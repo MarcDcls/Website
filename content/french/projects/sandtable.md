@@ -3,44 +3,28 @@ bg_image = "images/banners/banner_sandtable.webp"
 image = "images/projects/sandtable/SandTableNoBackground.png"
 title = "Sand Table"
 date = "2021-05-20"
-description = "Ce projet a pour but la création d'une table basse dont la partie supérieure transparente laisse voir une fine couche de sable sur laquelle une bille trace des courbes géométriques. La conception et la construction du dispositif caché permettant l'entrainement de la bille en acier par un aimant est au centre du travail effectué."
+description = "Ce projet a pour but la création d'une table basse dont la partie supérieure transparente laisse voir une fine couche de sable sur laquelle une bille trace des courbes géométriques. La conception et la construction du dispositif caché permettant l'entraînement de la bille en acier par un aimant est au centre du travail effectué."
 
 link = "projects/sandtable/"
 
 +++
 
-<!-- Lien vers une vidéo de la table finale : https://drive.google.com/file/d/1f2rt9aPrNuJFtPfoBBeAOd0koTvqRyuu/view?usp=sharing
-
-Le principe est simple : une bille guidée par un aimant se déplace sur le sable créant des dessins.
-
-Pour plus d’information sur la presentation du projet : https://docs.google.com/presentation/d/1pck66LWqkjd7cfp0bzTarUT_7bWldCSIgwggRyMb7JY/edit?usp=sharing
-
-Point d’avancement à mi-parcours : https://docs.google.com/presentation/d/1Eqf4eWZo3C32ohfp6-pZT9416RJLI0T7MQQeR5BHg9E/edit?usp=sharing
-
-Soutenance : https://docs.google.com/presentation/d/1yPLmFd40Nh6SfzoZcMZA2ZwRSW8NaPOQ-JQ3lznqQBg/edit?usp=sharing
-
-Decou / Duclusaud
-Problématiques initiales et solutions
-Deplacement de la bille : principe général -->
-
-
-
 # Introduction
 
 Le but de ce projet est de construire une table basse contenant un dispositif permettant le tracé de formes géométriques dans le sable à l'aide d'une bille en acier. Cette sand table est inspirée de plusieurs projets similaires tels que <a href="https://www.instructables.com/Sand-Table/" target="_blank"> celui-ci </a> ou en encore <a href="https://sisyphus-industries.com/" target="_blank"> celui-là </a>.
 
-Le centre du travail à fournir est d'une part la conception du dispositif de déplacement de l'aimant permettant l'entrainement de la bille, puis sa construction et son intégration à une table basse construite sur mesure. Il est aussi nécessaire de réaliser l'électronique et l'algorithmique associées.
+Le centre du travail à fournir est d'une part la conception du dispositif de déplacement de l'aimant permettant l'entraînement de la bille, puis sa construction et son intégration à une table basse construite sur mesure. Il est aussi nécessaire de réaliser l'électronique et l'algorithmique associées.
 
 # Conception du mécanisme
 
 Le bac à sable de la table doit recouvrir la majorité de sa surface et la bille doit pouvoir en atteindre tout point. Pour ces 2 raisons, ainsi que par choix esthétique, une forme circulaire a été adoptée pour la table. Elle est composée de 3 parties distinctes :
 - **Le bac à sable :** Il s'agit de la partie supérieure de la table, visible du dessus grace à un plateau en PMMA transparent. Il est constitué d'un bac contenant du sable et une bille en acier. 
 
-- **La partie intermédiaire :** Partie centrale de la table, elle contient le mécanisme d'entrainement de la bille. Elle n'est pas visible de l'utilisateur.
+- **La partie intermédiaire :** Partie centrale de la table, elle contient le mécanisme d'entraînement de la bille. Elle n'est pas visible de l'utilisateur.
 
 - **La partie inférieure :** Partie qui contient l'eléctronique et les moteurs. Elle est également invisible de l'utilisateur.
 
-Le système d'entrainement (partie intermédiaire) a été conçu à l'aide d'une tige filetée en rotation autour du centre de la table permettant la translation de l'aimant le long de son rayon. Une première version de ce mécanisme est composée de 2 moteurs M1 et M2 (nécessaires au 2 degrés de liberté souhaités) placés conformément au schéma suivant, où A représente l'aimant et R une roue libre.
+Le système d'entraînement (partie intermédiaire) a été conçu à l'aide d'une tige filetée en rotation autour du centre de la table permettant la translation de l'aimant le long de son rayon. Une première version de ce mécanisme est composée de 2 moteurs M1 et M2 (nécessaires au 2 degrés de liberté souhaités) placés conformément au schéma suivant, où A représente l'aimant et R une roue libre.
 
 <center>
 <img src="/images/projects/sandtable/schema_axe.webp" alt="Image not found !" width="80%"/>
@@ -187,6 +171,8 @@ Une démonstration du fonctionnement de la table est présentée ci-dessous. La 
   Your browser does not support the video tag.
 </video>
 </center>
+
+&nbsp;
 
 # Pistes d’amélioraton
 
