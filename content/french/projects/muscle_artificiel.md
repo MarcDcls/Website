@@ -2,7 +2,7 @@
 bg_image = "images/banners/common_banner.webp"
 image = "images/projects/muscle_artificiel/artificial_muscle.gif"
 title = "Muscles artificiels pneumatiques"
-date = "2021-09-20"
+date = "2021-10-03"
 description = "Les muscles artificiels pneumatiques, aussi appelés muscles de McKibben, sont des actionneurs ayant été inventés dans les années 1950. Il s'agit de dispositifs se contractant de manière analogue à des muscles biologiques lorsqu'activés par de l'air comprimé."
 +++
 

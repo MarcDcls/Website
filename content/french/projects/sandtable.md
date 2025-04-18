@@ -1,6 +1,6 @@
 +++
 bg_image = "images/banners/banner_sandtable.webp"
-image = "images/projects/sandtable/SandTableNoBackground.png"
+image = "images/projects/sandtable/CAD_partial.png"
 title = "Sand Table"
 date = "2021-05-20"
 description = "Ce projet a pour but la création d'une table basse dont la partie supérieure transparente laisse voir une fine couche de sable sur laquelle une bille trace des courbes géométriques. La conception et la construction du dispositif caché permettant l'entraînement de la bille en acier par un aimant est au centre du travail effectué."
@@ -174,7 +174,7 @@ Une démonstration du fonctionnement de la table est présentée ci-dessous. La 
 
 &nbsp;
 
-# Pistes d’amélioraton
+# Pistes d’amélioration
 
 Les principaux défauts de la version finale du projet sont le bruit (lié aux vibrations, roulements multiples et mécanismes plastiques), et l’entraînement inconsistant de la bille (lorsque la couche de sable est trop épaisse ou que les mouvements sont trop brusques). Afin de les supprimer, les pistes d’améliorations sont les suivantes :
 

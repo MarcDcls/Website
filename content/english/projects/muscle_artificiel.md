@@ -2,7 +2,7 @@
 bg_image = "images/banners/common_banner.webp"
 image = "images/projects/muscle_artificiel/artificial_muscle.gif"
 title = "Pneumatic artificial muscles"
-date = "2021-09-20"
+date = "2021-10-03"
 description = "Pneumatic artificial muscles, also called McKibben muscles, are actuators invented in the 1950s. These are devices that contract in a manner similar to biological muscles when activated by compressed air."
 +++
 

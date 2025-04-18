@@ -1,9 +1,10 @@
 baseURL = "https://marcdcls.github.io"
 disableLanguages = []
 disqusShortname = ""
-paginate = "4"
+paginate = "10"
 summaryLength = "30"
 theme = "airspace-hugo"
+enableInlineShortcodes = true
 
 ################################ English Language ########################
 [Languages.en]

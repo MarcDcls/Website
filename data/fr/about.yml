@@ -5,28 +5,41 @@ about:
   title : "Marc Duclusaud"
   image : "images/misc/photo_marc_circle.webp"
   
-  content : "Actuellement étudiant-ingénieur en robotique à l'<a href='https://enseirb-matmeca.bordeaux-inp.fr/fr' target='_blank'>ENSEIRB-MATMECA</a> à Bordeaux, je suis passionné de robotique 
-  et plus particulièrement de robotique appliquée au domaine des prothèses. Cette passion couplée à mon envie d'en apprendre plus sur le sujet est ce qui
-  me pousse aujourd'hui à vouloir prolonger mes études par une thèse dans cette branche. Avant de me spécialiser, j'ai suivi un cursus tourné vers 
-  l'informatique, ce qui en fait un domaine dans lequel j'ai acquis des compétences solides, qui je pense se révèlerons utiles à cette fin.
-  
-  
-  En parallèles de mes études, je suis également FabManager au sein du <a href='https://www.eirlab.net/' target='_blank'>Fablab de Bordeaux INP</a> où j'ai la chance de pouvoir travailler sur une multitude de 
-  projets technologiques variés me permettant de développer mes compétences dans plusieurs domaines tels que la mécanique, l'électronique ou encore 
-  les mathématiques. Cette expérience m'a aussi permis de me former à l'utilisation de nombreux outils et machines-outils comprenant les 
-  imprimantes 3D, les découpeuses laser ou encore les CNC. 
+  content : "Je suis actuellement doctorant en robotique humanoïde à 
+  l'<a href='https://www.u-bordeaux.fr/' target='_blank'>Université de Bordeaux</a>, 
+  au sein de l'équipe Rhoban du LaBRI. Mes travaux de recherche portent 
+  sur la locomotion de robots humanoïdes dans des environnements imprévisibles, 
+  à la croisée des chemins entre planification dynamique, contrôle optimal et 
+  apprentissage par renforcement. Mon objectif : repousser les limites du 
+  mouvement robotique, en combinant modélisation physique et intelligence artificielle.
 
 
-  Si vous souhaitez échanger avec moi par rapport à un des projets présent sur ce site, n'hésitez pas à me contacter, je suis disponible pour toute 
-  information complémentaire. Par ailleurs, si mon profil vous intéresse et que vous travaillez dans le domaine de la robotique ou des prothèses, 
-  je vous invite également à me contacter, mon CV étant consultable ici :"
+  Avant de débuter ma thèse, j’ai été formé à 
+  l’<a href='https://enseirb-matmeca.bordeaux-inp.fr/fr' 
+  target='_blank'>ENSEIRB-MATMECA</a>, où je me suis spécialisé en robotique 
+  après un solide cursus en informatique. Cette double compétence me permet 
+  aujourd’hui d’aborder les défis robotiques avec une vision complète, à la 
+  fois logicielle et matérielle.
   
-  # content : "Currently student in robotics at ENSEIRB-MATMECA engineering school, I use this website to share my work on several technological projects"
 
-  button:
-    enable : true
-    label : "CV"
-    link : "/pdf/CV_Marc_Duclusaud.pdf"
+  En parallèle de mes travaux de recherche, je suis FabManager au sein du 
+  <a href='https://www.eirlab.net/' target='_blank'>Fablab de Bordeaux INP</a>, 
+  un lieu où je continue à explorer, prototyper et transmettre. J’y encadre les 
+  membres sur leurs projets technologiques et je reste en prise directe avec 
+  la fabrication : CNC, impression 3D, découpe laser… Ces expériences pratiques 
+  nourrissent ma réflexion et mon approche de la robotique, que je vois comme 
+  un terrain d’innovation à la fois théorique et tangible.
+
+  
+  Ce site regroupe une partie des projets que j’ai menés ces dernières années, 
+  entre compétition RoboCup, contrôle biomimétique ou design de robots quadrupèdes. 
+  Si vous souhaitez échanger autour d’un projet, d’un article ou simplement 
+  discuter robotique, n’hésitez pas à me contacter !"
+  
+  # button:
+  #   enable : true
+  #   label : "CV"
+  #   link : "/pdf/CV_Marc_Duclusaud.pdf"
 
 ################################ Bandeau noir #####################################
 # features:

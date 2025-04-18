@@ -1,6 +1,6 @@
 +++
 bg_image = "images/banners/banner_sandtable.webp"
-image = "images/projects/sandtable/SandTableNoBackground.png"
+image = "images/projects/sandtable/CAD_partial.png"
 title = "Sand Table"
 date = "2021-05-20"
 description = "This project aims to create a coffee table with a transparent top that reveals a thin layer of sand, where a steel ball draws geometric patterns. The design and construction of the hidden mechanism used to move the ball using a magnet is the core focus of the project."
